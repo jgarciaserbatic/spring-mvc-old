@@ -21,7 +21,6 @@
         http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd">
 
 	<mvc:annotation-driven />
-	
 	<context:annotation-config />
 	<context:component-scan
 		base-package="es.serbatic" />
@@ -64,6 +63,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	
+	<bean id="validator"
+      class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
 </beans>
