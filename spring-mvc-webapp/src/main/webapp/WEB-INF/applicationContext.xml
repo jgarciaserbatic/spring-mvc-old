@@ -24,7 +24,11 @@
 	<context:annotation-config />
 	<context:component-scan
 		base-package="es.serbatic" />
-
+		
+	<mvc:interceptors>
+	    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+	</mvc:interceptors>
+	
 	<!-- MESSAGES -->
 	<bean
 		class="org.springframework.context.support.ResourceBundleMessageSource"
@@ -66,4 +70,5 @@
 	<bean id="validator"
       class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
+	
 </beans>

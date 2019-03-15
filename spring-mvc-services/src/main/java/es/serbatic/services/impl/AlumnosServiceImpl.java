@@ -64,7 +64,12 @@ public class AlumnosServiceImpl implements AlumnosService {
 
 	@Override
 	public void saveOrUpdate(AlumnosDto entity) {
-		throw new NotYetImplementedException("Método no implementado todavía");
+		if (entity.getId() != null) 
+			if (this.findById(entity.getId()) != null) {
+				this.update(entity);	
+				return;				
+			}
+		this.insert(entity);
 	}
 
 	@Override
@@ -81,7 +86,9 @@ public class AlumnosServiceImpl implements AlumnosService {
 
 	@Override
 	public void remove(AlumnosDto entity) {
-		throw new NotYetImplementedException("Método no implementado todavía");
+		if (entity.getId() != 0) {
+			this.remove(entity.getId());
+		}
 	}
 
 	@Override
