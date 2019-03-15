@@ -26,7 +26,9 @@
 		base-package="es.serbatic" />
 		
 	<mvc:interceptors>
-	    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+	    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+	</bean>
 	</mvc:interceptors>
 	
 	<!-- MESSAGES -->
@@ -35,15 +37,12 @@
 		id="messageSource">
 		<property name="basename" value="messages" />
 	</bean>
-
-	<bean id="localeChangeInterceptor"
-		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		<property name="paramName" value="siteLanguage" />
-	</bean>
-
+	
 	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
-
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="es" />
+	</bean>
+	
 	<bean id="urlMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="interceptors">

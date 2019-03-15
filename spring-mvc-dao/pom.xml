@@ -11,7 +11,7 @@
 	<artifactId>spring-mvc-dao</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Curso Spring Web MVC</name>
+	<name>Curso Spring DAO</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>

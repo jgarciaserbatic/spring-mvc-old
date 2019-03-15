@@ -11,7 +11,7 @@
 	<artifactId>spring-mvc-bom</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Curso Spring Web MVC</name>
+	<name>Curso Spring BOM</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
