@@ -1,4 +1,9 @@
 package es.serbatic.dto;
+/**
+ * 
+ * @author mcalonge
+ *
+ */
 
 public class ProfesorDto {
 	private Long id;

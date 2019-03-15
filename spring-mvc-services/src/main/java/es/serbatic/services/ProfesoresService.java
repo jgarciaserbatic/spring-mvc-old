@@ -7,7 +7,7 @@ import es.serbatic.dto.AlumnosDto;
 /**
  * Define las operaciones de negocio de alumnos
  * 
- * @author jgarcia
+ * @author mcalonge
  */
 public interface ProfesoresService extends GenericService<AlumnosDto, Alumnos, Long> {
 
