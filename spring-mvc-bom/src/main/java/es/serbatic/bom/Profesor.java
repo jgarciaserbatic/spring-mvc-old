@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PROFESORES")
 public class Profesor implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 25532555496336271L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

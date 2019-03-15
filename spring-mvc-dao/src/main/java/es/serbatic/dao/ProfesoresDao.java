@@ -4,7 +4,7 @@
 package es.serbatic.dao;
 
 import es.serbatic.base.dao.GenericDao;
-import es.serbatic.bom.Alumnos;
+import es.serbatic.bom.Profesor;
 
 /**
  * Define los metodos propios de acceso a datos a la tabla alumnos
@@ -13,6 +13,6 @@ import es.serbatic.bom.Alumnos;
  *
  */
 
-public interface ProfesoresDao extends GenericDao<Alumnos, Long> {
+public interface ProfesoresDao extends GenericDao<Profesor, Long> {
 
 }

@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.serbatic.dto.AlumnosDto;
-import es.serbatic.services.AlumnosService;
+import es.serbatic.dto.ProfesorDto;
+import es.serbatic.services.ProfesoresService;
 
 /**
  * Maneja las peticiones relacionadas con profesores
@@ -29,12 +30,29 @@ import es.serbatic.services.AlumnosService;
 public class ProfesorController {
 	
 	private final String LIST_VIEW = "profesores/list";
+	private final String PROFESOR_VIEW = "profesores/alumno";
 	
+	ProfesoresService profesoresService;
+
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView mostrar() {
 
 		return new ModelAndView(LIST_VIEW);
 	}
 	
+	@RequestMapping(method=RequestMethod.POST)
+	public ModelAndView showNewPage(Model model) {
+		model.addAttribute("profesor", new ProfesorDto());
+		return new ModelAndView(PROFESOR_VIEW, model.asMap());
+	}
 	
+	@RequestMapping(value="new", method=RequestMethod.POST)
+	public String insertarProfesor(@ModelAttribute ProfesorDto profesor, Model model) {
+		if(profesor.getId() != null) {
+			profesoresService.update(profesor);
+		} else {
+			profesoresService.insert(profesor);
+		}
+		return "redirect:/profesores";
+	}
 }
