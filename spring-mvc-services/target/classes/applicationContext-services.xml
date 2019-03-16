@@ -12,12 +12,13 @@
 		<property name="converters">
 			<list>
 				<bean id="alumnosConverter" class="es.serbatic.converter.AlumnosConverter"></bean>
+				<bean id="profesoresConverter" class="es.serbatic.converter.ProfesoresConverter"></bean>
+				<bean id="materiaConverter" class="es.serbatic.converter.MateriaConverter"></bean>
 			</list>
 		</property>
 	</bean>
 	<!-- Jackson model mapper -->
-	<bean class="org.modelmapper.ModelMapper" id="modelMapper" factory-bean="mapperFactory" factory-method="create">
-		
+	<bean class="org.modelmapper.ModelMapper" id="modelMapper" factory-bean="mapperFactory" factory-method="create">	
 	</bean>	
 	
 </beans>

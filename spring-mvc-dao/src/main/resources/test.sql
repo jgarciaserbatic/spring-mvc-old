@@ -9,20 +9,8 @@ CREATE TABLE `alumnos` (
   `APELLIDO_2` varchar(250) NOT NULL
 );
 
-CREATE TABLE `profesores` (
-  `ID` int(11) NOT NULL,
-  `NOMBRE` varchar(250) NOT NULL,
-  `APELLIDO_1` varchar(250) NOT NULL,
-  `APELLIDO_2` varchar(250) NOT NULL
-);
-
-
-CREATE TABLE `materias` (
-  `IDMATERIAS` int(11) NOT NULL,
-  `NOMBREMATERIA` varchar(250) NOT NULL,
-);
 --
--- ndices para tablas volcadas
+-- Ã�ndices para tablas volcadas
 --
 
 --
@@ -30,4 +18,30 @@ CREATE TABLE `materias` (
 --
 ALTER TABLE `alumnos`
   ADD PRIMARY KEY (`ID`);
+  
+CREATE TABLE `profesores` (
+  `ID` int(11) NOT NULL,
+  `NOMBRE` varchar(250) NOT NULL,
+  `APELLIDO_1` varchar(250) NOT NULL,
+  `APELLIDO_2` varchar(250) NOT NULL,
+  `MATERIA` varchar(250) NOT NULL
+);
+
+--
+-- Ã�ndices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `profesores`
+  ADD PRIMARY KEY (`ID`);  
+  
+ CREATE TABLE `materia` (
+  `ID` int(11) NOT NULL,
+  `NOMBRE` varchar(250) NOT NULL
+);
+ALTER TABLE `materia`
+  ADD PRIMARY KEY (`ID`);
+
 COMMIT;
