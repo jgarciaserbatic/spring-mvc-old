@@ -2,6 +2,7 @@ package es.serbatic.dto;
 /**
  * 
  * @author mcalonge
+ * NOTA MENTAL: Objeto en donde transformamos los BOM
  *
  */
 
@@ -10,6 +11,13 @@ public class ProfesorDto {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	private String apariencia;
+	public String getApariencia() {
+		return apariencia;
+	}
+	public void setApariencia(String apariencia) {
+		this.apariencia = apariencia;
+	}
 	public Long getId() {
 		return id;
 	}

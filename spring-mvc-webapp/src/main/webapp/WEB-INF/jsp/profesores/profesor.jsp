@@ -21,6 +21,6 @@
 	<spring:message code="profesores.nombre"></spring:message>: <form:input path="nombre" /><br/>
 	<spring:message code="profesores.apellido1"></spring:message><form:input path="apellido1"/><br/>
 	<spring:message code="profesores.apellido2"></spring:message><form:input path="apellido2"/><br/>
-	
+	<spring:message code="profesores.apariencia"></spring:message><form:checkbox path="apariencia" value="1"/><br/>
 	<form:button value="submit">Enviar</form:button>
 </form:form>

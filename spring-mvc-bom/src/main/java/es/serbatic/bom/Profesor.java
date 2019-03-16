@@ -13,7 +13,9 @@ import javax.persistence.Table;
 @Table(name = "PROFESORES")
 public class Profesor implements Serializable {
 	/**
+	 * @author mcalonge
 	 * 
+	 * Nota Mental: BOM se trae de BBDD
 	 */
 	private static final long serialVersionUID = 25532555496336271L;
 
@@ -26,7 +28,16 @@ public class Profesor implements Serializable {
 	private String apellido1;
 	@Column(name = "APELLIDO_2")
 	private String apellido2;
+	@Column(name = "APARIENCIA")
+	private String apariencia;
 	
+	
+	public String getApariencia() {
+		return apariencia;
+	}
+	public void setApariencia(String apariencia) {
+		 this.apariencia = apariencia;
+	}
 	public Long getId() {
 		return id;
 	}

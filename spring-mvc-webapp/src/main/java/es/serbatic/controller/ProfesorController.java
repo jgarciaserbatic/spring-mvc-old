@@ -3,19 +3,14 @@
  */
 package es.serbatic.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.serbatic.dto.AlumnosDto;
 import es.serbatic.dto.ProfesorDto;
 import es.serbatic.services.ProfesoresService;
 
@@ -30,19 +25,22 @@ import es.serbatic.services.ProfesoresService;
 public class ProfesorController {
 	
 	private final String LIST_VIEW = "profesores/list";
-	private final String PROFESOR_VIEW = "profesores/alumno";
+	private final String PROFESOR_VIEW = "profesores/profesor";
 	
+	@Autowired
 	ProfesoresService profesoresService;
 
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView mostrar() {
-
-		return new ModelAndView(LIST_VIEW);
+	public ModelAndView mostrar(Model model) {
+		model.addAttribute("profesores",profesoresService.findAll());
+		return new ModelAndView(LIST_VIEW, model.asMap());
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView showNewPage(Model model) {
+		
 		model.addAttribute("profesor", new ProfesorDto());
+		
 		return new ModelAndView(PROFESOR_VIEW, model.asMap());
 	}
 	
