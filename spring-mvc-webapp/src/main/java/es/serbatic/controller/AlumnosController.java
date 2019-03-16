@@ -1,4 +1,4 @@
-/**
+      /**
  * 
  */
 package es.serbatic.controller;
@@ -86,6 +86,7 @@ public class AlumnosController {
 		alumnosService.remove(id);
 		return "redirect:/alumnos";
 	}
+	
 	
 	@ExceptionHandler
 	public ModelAndView handleException(Exception ex) {
