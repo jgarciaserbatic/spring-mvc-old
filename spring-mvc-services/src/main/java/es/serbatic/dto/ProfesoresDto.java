@@ -1,26 +1,9 @@
-package es.serbatic.dto;
+     package es.serbatic.dto;
 
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
-/**
- * Objeto de transferenca alumno
- * 
- * @author jgarcia
- *
- */
-public class AlumnosDto {
-
+public class ProfesoresDto {
 	private Long id;
-	@NotEmpty
-	@Size(max = 255)
 	private String nombre;
-	@NotEmpty
-	@Size(max = 255)
 	private String apellido1;
-
-	@Size(max = 255)
 	private String apellido2;
 	/**
 	 * @return the id
@@ -71,3 +54,5 @@ public class AlumnosDto {
 		this.apellido2 = apellido2;
 	}
 }
+         
+

@@ -5,9 +5,12 @@ package es.serbatic.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +38,11 @@ public class AlumnosController {
 	@Autowired
 	AlumnosService alumnosService;
 	
+	@ModelAttribute("alumno")
+	public AlumnosDto populateForm() {
+		return new AlumnosDto();
+	}
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listarAlumnos(Model model) {
 		List<AlumnosDto> alumnos = alumnosService.findAll();
@@ -44,7 +52,9 @@ public class AlumnosController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView showNewPage(Model model) {
-		model.addAttribute("alumno", new AlumnosDto());
+		if (!model.containsAttribute("alumno")) {
+			model.addAttribute("alumno", new AlumnosDto());
+		}
 		return new ModelAndView(ALUMNO_VIEW, model.asMap());
 	}
 	
@@ -55,13 +65,20 @@ public class AlumnosController {
 	}
 	
 	@RequestMapping(value="new", method=RequestMethod.POST)
-	public String insertarAlumno(@ModelAttribute AlumnosDto alumno, Model model) {
-		if(alumno.getId() != null) {
-			alumnosService.update(alumno);
-		} else {
-			alumnosService.insert(alumno);
+	public ModelAndView insertarAlumno( @ModelAttribute @Valid AlumnosDto alumno, BindingResult result,  Model model) {
+		ModelAndView view;
+		if(result.hasErrors()) {
+			view = this.showNewPage(model);
+		}else {
+			if(alumno.getId() != null) {
+				alumnosService.update(alumno);
+			} else {
+				alumnosService.insert(alumno);
+			}
+			view = this.listarAlumnos(model);
 		}
-		return "redirect:/alumnos";
+		
+		return view;
 	}
 	
 	@RequestMapping("delete/{id}")

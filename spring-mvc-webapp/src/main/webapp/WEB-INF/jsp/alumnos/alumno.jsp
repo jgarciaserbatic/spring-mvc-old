@@ -15,10 +15,10 @@
 </c:choose>
 
 <form:form modelAttribute="alumno" action="${ url }" >
-	
+
 	<h1>${ title }</h1>
 	<form:hidden path="id"/>
-	<spring:message code="alumnos.nombre"></spring:message>: <form:input path="nombre" /><br/>
+	<spring:message code="alumnos.nombre"></spring:message>: <form:input path="nombre"/><form:errors path="nombre"></form:errors><br/>
 	<spring:message code="alumnos.apellido1"></spring:message><form:input path="apellido1"/><br/>
 	<spring:message code="alumnos.apellido2"></spring:message><form:input path="apellido2"/><br/>
 	

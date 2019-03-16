@@ -2,92 +2,75 @@ package es.serbatic.bom;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
-
-
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "ALUMNOS")
-public class Alumnos implements Serializable {
-
-	/**
-	 * 
-	 */
+@Table(name = "PROFESORES")
+public class Profesores implements Serializable {
 	private static final long serialVersionUID = -9054047698877645200L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
 	@Column(name = "NOMBRE")
 	private String nombre;
-	
 	@Column(name = "APELLIDO_1")
 	private String apellido1;
-	
 	@Column(name = "APELLIDO_2")
 	private String apellido2;
-
 	/**
 	 * @return the id
 	 */
 	public Long getId() {
 		return id;
 	}
-
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	/**
 	 * @return the nombre
 	 */
 	public String getNombre() {
 		return nombre;
 	}
-
 	/**
 	 * @param nombre the nombre to set
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	/**
 	 * @return the apellido1
 	 */
 	public String getApellido1() {
 		return apellido1;
 	}
-
 	/**
 	 * @param apellido1 the apellido1 to set
 	 */
 	public void setApellido1(String apellido1) {
 		this.apellido1 = apellido1;
 	}
-
 	/**
 	 * @return the apellido2
 	 */
 	public String getApellido2() {
 		return apellido2;
 	}
-
 	/**
 	 * @param apellido2 the apellido2 to set
 	 */
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -100,10 +83,7 @@ public class Alumnos implements Serializable {
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -114,7 +94,7 @@ public class Alumnos implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Alumnos other = (Alumnos) obj;
+		Profesores other = (Profesores) obj;
 		if (apellido1 == null) {
 			if (other.apellido1 != null)
 				return false;
@@ -138,3 +118,5 @@ public class Alumnos implements Serializable {
 		return true;
 	}
 }
+
+
