@@ -21,28 +21,26 @@
         http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd">
 
 	<mvc:annotation-driven />
+	
 	<context:annotation-config />
 	<context:component-scan
 		base-package="es.serbatic" />
-		
-	<mvc:interceptors>
-	    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		<property name="paramName" value="language" />
-	</bean>
-	</mvc:interceptors>
-	
+
 	<!-- MESSAGES -->
 	<bean
 		class="org.springframework.context.support.ResourceBundleMessageSource"
 		id="messageSource">
 		<property name="basename" value="messages" />
 	</bean>
-	
-	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<property name="defaultLocale" value="es" />
+
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="siteLanguage" />
 	</bean>
-	
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+
 	<bean id="urlMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="interceptors">
@@ -66,8 +64,6 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="validator"
-      class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
-
 	
+
 </beans>

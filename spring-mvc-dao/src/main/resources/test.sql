@@ -2,7 +2,7 @@
 -- Estructura de tabla para la tabla `alumnos`
 --
 
-CREATE TABLE `alumnos` (
+CREATE TABLE IF NOT EXISTS `alumnos` (
   `ID` int(11) NOT NULL,
   `NOMBRE` varchar(250) NOT NULL,
   `APELLIDO_1` varchar(250) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `alumnos` (
 );
 
 --
--- Índices para tablas volcadas
+-- Ã�ndices para tablas volcadas
 --
 
 --
@@ -21,55 +21,59 @@ ALTER TABLE `alumnos`
 COMMIT;
 
 
-CREATE TABLE `profesor` (
+--
+-- Estructura de tabla para la tabla `profesores`
+--
+CREATE TABLE IF NOT EXISTS `profesores`  (
   `ID` int(11) NOT NULL,
   `NOMBRE` varchar(250) NOT NULL,
   `APELLIDO_1` varchar(250) NOT NULL,
-  `APELLIDO_2` varchar(250) NOT NULL,
-  `FECHA_ALTA` date
+  `APELLIDO_2` varchar(250) NOT NULL
 );
 
 --
--- Índices para tablas volcadas
+-- Ã�ndices para tablas volcadas
 --
 
 --
--- Indices de la tabla `alumnos`
+-- Indices de la tabla `profesores`
 --
-ALTER TABLE `profesor`
+ALTER TABLE `profesores`
   ADD PRIMARY KEY (`ID`);
 COMMIT;
 
-
-CREATE TABLE `materia` (
+-- Estructura de tabla para la tabla `materias`
+--
+CREATE TABLE IF NOT EXISTS `materias`  (
   `ID` int(11) NOT NULL,
-  `NOMBRE` varchar(250) NOT NULL
+  `NOMBRE` varchar(250) NOT NULL,
 );
 
 --
--- Índices para tablas volcadas
+-- Ã�ndices para tablas volcadas
 --
 
 --
--- Indices de la tabla `alumnos`
+-- Indices de la tabla `materias`
 --
-ALTER TABLE `materia`
+ALTER TABLE `materias`
   ADD PRIMARY KEY (`ID`);
 COMMIT;
 
-CREATE TABLE `profesor_materia` (
-  `ID_PROFESOR` int(11) NOT NULL,
-   `ID_MATERIA` int(11) NOT NULL
+-- Estructura de tabla para la tabla `profesores_materias`
+--
+CREATE TABLE IF NOT EXISTS `profesores_materias`  (
+  `ID_MATERIA` int(11) NOT NULL,
+  `ID_PROFESOR` int(11) NOT NULL
 );
 
 --
--- Índices para tablas volcadas
+-- Ã�ndices para tablas volcadas
 --
 
 --
--- Indices de la tabla `alumnos`
+-- Indices de la tabla `profesores_materias`
 --
-ALTER TABLE `profesor_materia`
-  ADD PRIMARY KEY (`ID_PROFESOR`, `ID_MATERIA`);
+ALTER TABLE `profesores_materias`
+  ADD PRIMARY KEY (`ID_MATERIA`,`ID_PROFESOR`);
 COMMIT;
-

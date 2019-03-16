@@ -2,6 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
+<spring:url value="/" var="urlInicio"></spring:url>
+
 <table>
 	<thead>
 		<th>Id</th>
@@ -32,3 +34,4 @@
 		<button type="submit"><spring:message code="alumnos.options.add"></spring:message></button>
 	</form:form>
 </table>
+<a href="${ urlInicio }">Inicio</a>

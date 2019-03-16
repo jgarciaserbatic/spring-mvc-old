@@ -74,5 +74,5 @@ public class AlumnosController {
 	public ModelAndView handleException(Exception ex) {
 		return new ModelAndView(ERROR_VIEW);
 	}
-	
+
 }
