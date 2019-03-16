@@ -1,10 +1,13 @@
      package es.serbatic.dto;
 
+import java.util.Date;
+
 public class ProfesoresDto {
 	private Long id;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	private Date fechaAlta;
 	/**
 	 * @return the id
 	 */
@@ -52,6 +55,18 @@ public class ProfesoresDto {
 	 */
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
+	}
+	/**
+	 * @return the fechaAlta
+	 */
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+	/**
+	 * @param fechaAlta the fechaAlta to set
+	 */
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 }
          

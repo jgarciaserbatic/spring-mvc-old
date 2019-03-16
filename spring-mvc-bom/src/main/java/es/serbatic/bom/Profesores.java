@@ -1,6 +1,7 @@
 package es.serbatic.bom;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,8 @@ public class Profesores implements Serializable {
 	private String apellido1;
 	@Column(name = "APELLIDO_2")
 	private String apellido2;
+	@Column(name="FECHA_ALTA")
+	private Date fechaAlta;
 	/**
 	 * @return the id
 	 */
@@ -69,6 +72,18 @@ public class Profesores implements Serializable {
 	 */
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
+	}
+	/**
+	 * @return the fechaAlta
+	 */
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+	/**
+	 * @param fechaAlta the fechaAlta to set
+	 */
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

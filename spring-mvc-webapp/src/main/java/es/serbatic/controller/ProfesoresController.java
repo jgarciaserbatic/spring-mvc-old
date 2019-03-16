@@ -1,11 +1,17 @@
 package es.serbatic.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,6 +75,17 @@ public class ProfesoresController {
 		profesoresService.remove(id);
 		return "redirect:/profesores";
 	}
+	@InitBinder("profesor")
+    public void initBinder(WebDataBinder binder) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
+        // Con este metodo de DateFormat, se puede evitar la excepcion que lanza el Formulario si no introduces
+        // ninguna fecha y esta se queda a null
+        df.setLenient(false);
+        
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(df, true));
+    }
+	
 	
 	@ExceptionHandler
 	public ModelAndView handleException(Exception ex) {

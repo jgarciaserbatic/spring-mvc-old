@@ -16,6 +16,7 @@ public class ProfesoresConverter implements Converter<Profesores, ProfesoresDto>
 		result.setNombre(source.getNombre());
 		result.setApellido1(source.getApellido1());
 		result.setApellido2(source.getApellido2());
+		result.setFechaAlta(source.getFechaAlta());
 		return result;
 	}
 

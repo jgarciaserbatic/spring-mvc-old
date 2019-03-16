@@ -28,7 +28,9 @@ CREATE TABLE `profesores` (
   `ID` int(11) NOT NULL,
   `NOMBRE` varchar(250) NOT NULL,
   `APELLIDO_1` varchar(250) NOT NULL,
-  `APELLIDO_2` varchar(250) NOT NULL
+  `APELLIDO_2` varchar(250) NOT NULL,
+  `FECHA_ALTA` DATE
+  
 );
 
 --

@@ -21,6 +21,7 @@
 	<spring:message code="profesores.nombre"></spring:message>: <form:input path="nombre" /><br/>
 	<spring:message code="profesores.apellido1"></spring:message><form:input path="apellido1"/><br/>
 	<spring:message code="profesores.apellido2"></spring:message><form:input path="apellido2"/><br/>
+	<spring:message code="profesores.fechaAlta"></spring:message><form:input path="fechaAlta" type="date"/>
 	
 	<form:button value="submit">Enviar</form:button>
 </form:form>
