@@ -19,8 +19,6 @@
 	<h1>${ title }</h1>
 	<form:hidden path="id"/>
 	<spring:message code="materias.nombre"></spring:message>: <form:input path="nombre" /><br/>
-	<spring:message code="materias.descripcion"></spring:message><form:input path="descripcion"/><br/>
-	<spring:message code="materias.profesores"></spring:message><form:input path="profesores"/><br/>
 	
 	<form:button value="submit">Enviar</form:button>
 </form:form>

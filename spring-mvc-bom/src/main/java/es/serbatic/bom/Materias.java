@@ -7,30 +7,22 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "MATERIAS")
+@Table(name = "MATERIA")
 public class Materias implements Serializable {
 
+	
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2662824593429674727L;
+	private static final long serialVersionUID = -6860466932498634566L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "NOMBRE")
 	private String nombre;
-	@Column(name = "DESCRIPCION")
-	private String descripcion;
 	
-	@ManyToMany(cascade = {
-	        CascadeType.PERSIST,
-	        CascadeType.MERGE
-	    })
-	    @JoinTable(name = "materias_profesor",
-	        joinColumns = @JoinColumn(name = "id_materia"),
-	        inverseJoinColumns = @JoinColumn(name = "id_profesor")
-	    )
+	@ManyToMany(mappedBy = "materias")
 	private List<Profesores> profesores = new ArrayList<>();
 	
 	/**
@@ -58,25 +50,13 @@ public class Materias implements Serializable {
 		this.nombre = nombre;
 	}
 	/**
-	 * @return the descripcion
-	 */
-	public String getDescripcion() {
-		return descripcion;
-	}
-	/**
-	 * @param apellido1 the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	/**
-	 * @return the descripcion
+	 * @return the profesores
 	 */
 	public List<Profesores> getProfesores() {
 		return profesores;
 	}
 	/**
-	 * @param apellido1 the descripcion to set
+	 * @param profesores the profesores to set
 	 */
 	public void setProfesores(List<Profesores> profesores) {
 		this.profesores = profesores;
@@ -91,7 +71,6 @@ public class Materias implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((profesores == null) ? 0 : profesores.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
@@ -113,11 +92,6 @@ public class Materias implements Serializable {
 			if (other.profesores != null)
 				return false;
 		} else if (!profesores.equals(other.profesores))
-			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
-				return false;
-		} else if (!descripcion.equals(other.descripcion))
 			return false;
 		if (id == null) {
 			if (other.id != null)

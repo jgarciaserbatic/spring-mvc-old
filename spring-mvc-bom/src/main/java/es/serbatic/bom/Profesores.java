@@ -1,18 +1,20 @@
 package es.serbatic.bom;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PROFESORES")
+@Table(name = "PROFESORE")
 public class Profesores implements Serializable {
 
+	
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2662824593429674727L;
+	private static final long serialVersionUID = -6136757769555298L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -22,6 +24,12 @@ public class Profesores implements Serializable {
 	private String apellido1;
 	@Column(name = "APELLIDO_2")
 	private String apellido2;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+	  name = "profesor_materia", 
+	  joinColumns = @JoinColumn(name = "ID_PROFESOR"), 
+	  inverseJoinColumns = @JoinColumn(name = "ID_MATERIA"))
+	private List<Materias> materias;
 	/**
 	 * @return the id
 	 */
@@ -70,6 +78,20 @@ public class Profesores implements Serializable {
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
+	
+	public List<Materias> getMaterias() {
+		return materias;
+	}
+	
+	public void setMaterias(List<Materias> materias) {
+		this.materias = materias;
+	}
+	
+	public void addMaterias(Materias materia) {
+		List<Materias> result = this.getMaterias();
+		result.add(materia);
+		this.setMaterias(result);
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -79,6 +101,7 @@ public class Profesores implements Serializable {
 		int result = 1;
 		result = prime * result + ((apellido1 == null) ? 0 : apellido1.hashCode());
 		result = prime * result + ((apellido2 == null) ? 0 : apellido2.hashCode());
+		result = prime * result + ((materias == null) ? 0 : materias.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
@@ -104,6 +127,11 @@ public class Profesores implements Serializable {
 			if (other.apellido2 != null)
 				return false;
 		} else if (!apellido2.equals(other.apellido2))
+			return false;
+		if (materias == null) {
+			if (other.materias != null)
+				return false;
+		} else if (!materias.equals(other.materias))
 			return false;
 		if (id == null) {
 			if (other.id != null)

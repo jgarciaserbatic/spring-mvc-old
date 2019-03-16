@@ -6,7 +6,6 @@
 	<thead>
 		<th>Id</th>
 		<th><spring:message code="materias.nombre"></spring:message></th>
-		<th><spring:message code="materias.descripcion"></spring:message></th>
 		<th><spring:message code="materias.profesores"></spring:message></th>
 		<th><spring:message code="materias.options"></spring:message></th>
 	</thead>
@@ -16,7 +15,6 @@
 				<tr>
 					<td>${materia.id}</td>
 					<td>${materia.nombre}</td>
-					<td>${materia.descripcion}</td>
 					<td>${materia.profesores}</td>
 					<td>
 						<a href="<spring:url value="/materias/delete/${ materia.id }" ></spring:url>">Eliminar</a>

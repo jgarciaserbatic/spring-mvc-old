@@ -8,6 +8,7 @@
 		<th><spring:message code="profesores.nombre"></spring:message></th>
 		<th><spring:message code="profesores.apellido1"></spring:message></th>
 		<th><spring:message code="profesores.apellido2"></spring:message></th>
+		<th><spring:message code="profesores.materias"></spring:message></th>
 		<th><spring:message code="profesores.options"></spring:message></th>
 	</thead>
 	<tbody>
@@ -18,6 +19,7 @@
 					<td>${profesor.nombre}</td>
 					<td>${profesor.apellido1}</td>
 					<td>${profesor.apellido2}</td>
+					<td>${profesor.materias}</td>
 					<td>
 						<a href="<spring:url value="/profesores/delete/${ profesor.id }" ></spring:url>">Eliminar</a>
 						<a href="<spring:url value="/profesores/update/${ profesor.id }" ></spring:url>">Actualizar</a>

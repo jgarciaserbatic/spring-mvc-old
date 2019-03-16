@@ -12,7 +12,6 @@ public class MateriasDto {
 
 	private Long id;
 	private String nombre;
-	private String descripcion;
 	private List<ProfesoresDto> profesores;
 	/**
 	 * @return the id
@@ -37,18 +36,6 @@ public class MateriasDto {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	/**
-	 * @return the descripcion
-	 */
-	public String getDescripcion() {
-		return descripcion;
-	}
-	/**
-	 * @param apellido1 the descripcion to set
-	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 	/**
 	 * @return the apellido2
