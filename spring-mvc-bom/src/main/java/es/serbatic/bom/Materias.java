@@ -10,9 +10,7 @@ import javax.persistence.*;
 @Table(name = "MATERIAS")
 public class Materias implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -9054047698877645200L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,33 +22,23 @@ public class Materias implements Serializable {
 	
 	@ManyToMany(mappedBy = "materias")
     private List<Profesores> profesores = new ArrayList<>();
-	/**
-	 * @return the id
-	 */
+
 	public Long getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/**
-	 * @return the nombre
-	 */
+
 	public String getNombre() {
 		return nombre;
 	}
-	/**
-	 * @param nombre the nombre to set
-	 */
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	/**
-	 * @return the horas
-	 */
+
 	public Long getHoras() {
 		return horas;
 	}
@@ -60,23 +48,15 @@ public class Materias implements Serializable {
 	public void setHoras(Long horas) {
 		this.horas = horas;
 	}
-	
-	
-	/**
-	 * @return the profesores
-	 */
+
 	public List<Profesores> getProfesores() {
 		return profesores;
 	}
-	/**
-	 * @param profesores the profesores to set
-	 */
+
 	public void setProfesores(List<Profesores> profesores) {
 		this.profesores = profesores;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -86,9 +66,7 @@ public class Materias implements Serializable {
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -18,12 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import es.serbatic.dto.MateriasDto;
 import es.serbatic.services.MateriasService;
 
-/**
- * Maneja las peticiones relacionadas con materias
- * 
- * @author jgarcia
- *
- */
 @RequestMapping("materias")
 @Controller
 public class MateriasController {

@@ -22,12 +22,6 @@ import es.serbatic.dto.ProfesoresDto;
 import es.serbatic.services.MateriasService;
 import es.serbatic.services.ProfesoresService;
 
-/**
- * Maneja las peticiones relacionadas con profesores
- * 
- * @author jgarcia
- *
- */
 @RequestMapping("profesores")
 @Controller
 public class ProfesoresController {

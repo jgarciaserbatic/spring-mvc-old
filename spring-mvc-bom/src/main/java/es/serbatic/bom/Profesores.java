@@ -9,9 +9,6 @@ import javax.persistence.*;
 @Table(name = "PROFESORES")
 public class Profesores implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9054047698877645200L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

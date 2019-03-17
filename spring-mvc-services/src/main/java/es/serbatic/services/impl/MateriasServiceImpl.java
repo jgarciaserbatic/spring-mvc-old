@@ -16,12 +16,6 @@ import es.serbatic.dao.MateriasDao;
 import es.serbatic.dto.MateriasDto;
 import es.serbatic.services.MateriasService;
 
-/**
- * Implementa la logica del servicio de materias
- * 
- * @author jgarcia
- *
- */
 @Service("materiasService")
 public class MateriasServiceImpl implements MateriasService {
 

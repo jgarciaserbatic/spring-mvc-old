@@ -18,12 +18,6 @@ import es.serbatic.dao.ProfesoresDao;
 import es.serbatic.dto.ProfesoresDto;
 import es.serbatic.services.ProfesoresService;
 
-/**
- * Implementa la logica del servicio de profesores
- * 
- * @author jgarcia
- *
- */
 @Service("profesoresService")
 public class ProfesoresServiceImpl implements ProfesoresService {
 

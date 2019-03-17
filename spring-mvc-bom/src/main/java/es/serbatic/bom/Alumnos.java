@@ -8,9 +8,6 @@ import javax.persistence.*;
 @Table(name = "ALUMNOS")
 public class Alumnos implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9054047698877645200L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,57 +18,39 @@ public class Alumnos implements Serializable {
 	private String apellido1;
 	@Column(name = "APELLIDO_2")
 	private String apellido2;
-	/**
-	 * @return the id
-	 */
+
 	public Long getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/**
-	 * @return the nombre
-	 */
+
 	public String getNombre() {
 		return nombre;
 	}
-	/**
-	 * @param nombre the nombre to set
-	 */
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	/**
-	 * @return the apellido1
-	 */
+	
 	public String getApellido1() {
 		return apellido1;
 	}
-	/**
-	 * @param apellido1 the apellido1 to set
-	 */
+	
 	public void setApellido1(String apellido1) {
 		this.apellido1 = apellido1;
 	}
-	/**
-	 * @return the apellido2
-	 */
+	
 	public String getApellido2() {
 		return apellido2;
 	}
-	/**
-	 * @param apellido2 the apellido2 to set
-	 */
+	
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -82,9 +61,7 @@ public class Alumnos implements Serializable {
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

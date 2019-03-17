@@ -11,12 +11,7 @@ import es.serbatic.base.dao.impl.GenericDaoImpl;
 import es.serbatic.bom.Materias;
 import es.serbatic.dao.MateriasDao;
 
-/**
- * Implementa el acceso a datos de la tabla profesores
- * 
- * @author jgarcia
- *
- */
+
 @Repository("materiasDao")
 public class MateriasDaoImpl extends GenericDaoImpl<Materias, Long> implements MateriasDao {
 

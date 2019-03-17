@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.serbatic.controller;
 
 import java.util.List;
@@ -18,12 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.serbatic.dto.AlumnosDto;
 import es.serbatic.services.AlumnosService;
 
-/**
- * Maneja las peticiones relacionadas con alumno
- * 
- * @author jgarcia
- *
- */
+
 @RequestMapping("alumnos")
 @Controller
 public class AlumnosController {

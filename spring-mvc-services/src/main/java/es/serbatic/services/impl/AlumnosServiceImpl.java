@@ -16,12 +16,6 @@ import es.serbatic.dao.AlumnosDao;
 import es.serbatic.dto.AlumnosDto;
 import es.serbatic.services.AlumnosService;
 
-/**
- * Implementa la logica del servicio de alumnos
- * 
- * @author jgarcia
- *
- */
 @Service("alumnosService")
 public class AlumnosServiceImpl implements AlumnosService {
 
