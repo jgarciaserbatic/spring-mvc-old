@@ -11,10 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.serbatic.bom.Materias;
-import es.serbatic.dao.MateriasDao;
-import es.serbatic.dto.MateriasDto;
-import es.serbatic.dto.ProfesoresDto;
+import es.serbatic.bom.Materia;
+import es.serbatic.dao.MateriaDao;
+import es.serbatic.dto.MateriaDto;
+import es.serbatic.dto.ProfesorDto;
 import es.serbatic.services.MateriasService;
 
 /**
@@ -27,7 +27,7 @@ import es.serbatic.services.MateriasService;
 public class MateriasServiceImpl implements MateriasService {
 
 	@Autowired
-	MateriasDao materiasDao;
+	MateriaDao materiasDao;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -37,34 +37,34 @@ public class MateriasServiceImpl implements MateriasService {
 	}
 
 	@Override
-	public MateriasDto findById(Long id) {
-		Materias entity = materiasDao.findById(id);
-		return modelMapper.map(entity, MateriasDto.class);
+	public MateriaDto findById(Long id) {
+		Materia entity = materiasDao.findById(id);
+		return modelMapper.map(entity, MateriaDto.class);
 	}
 
 	@Override
-	public List<MateriasDto> findAll() {
-		List<MateriasDto> result = new ArrayList<>();
-		List<Materias> found = materiasDao.findAll();
-		for(Materias profesor: found) {
-			result.add(modelMapper.map(profesor, MateriasDto.class));
+	public List<MateriaDto> findAll() {
+		List<MateriaDto> result = new ArrayList<>();
+		List<Materia> found = materiasDao.findAll();
+		for(Materia profesor: found) {
+			result.add(modelMapper.map(profesor, MateriaDto.class));
 		}
 		return result;
 	}
 
 	@Override
-	public List<MateriasDto> findAllOrderBy(String[] orderBy, boolean asc) {
+	public List<MateriaDto> findAllOrderBy(String[] orderBy, boolean asc) {
 		throw new NotYetImplementedException("Método no implementado todavía");
 	}
 
 	@Override
-	public void update(MateriasDto dto) {
-		Materias entity = modelMapper.map(dto, Materias.class);
+	public void update(MateriaDto dto) {
+		Materia entity = modelMapper.map(dto, Materia.class);
 		materiasDao.update(entity);
 	}
 
 	@Override
-	public void saveOrUpdate(MateriasDto entity) {
+	public void saveOrUpdate(MateriaDto entity) {
 		if (entity.getId() != null) 
 			if (this.findById(entity.getId()) != null) {
 				this.update(entity);	
@@ -74,9 +74,9 @@ public class MateriasServiceImpl implements MateriasService {
 	}
 
 	@Override
-	public MateriasDto insert(MateriasDto dto) {
-		Materias entity = modelMapper.map(dto, Materias.class);
-		dto = modelMapper.map(materiasDao.insert(entity), MateriasDto.class);
+	public MateriaDto insert(MateriaDto dto) {
+		Materia entity = modelMapper.map(dto, Materia.class);
+		dto = modelMapper.map(materiasDao.insert(entity), MateriaDto.class);
 		return dto;
 	}
 	
@@ -86,20 +86,20 @@ public class MateriasServiceImpl implements MateriasService {
 	}
 
 	@Override
-	public void remove(MateriasDto entity) {
+	public void remove(MateriaDto entity) {
 		if (entity.getId() != 0) {
 			this.remove(entity.getId());
 		}
 	}
 
 	@Override
-	public List<MateriasDto> findByExample(MateriasDto example) {
+	public List<MateriaDto> findByExample(MateriaDto example) {
 		throw new NotYetImplementedException("Método no implementado todavía");
 	}
 
 	@Override
-	public void agregarProfesor(MateriasDto materia, ProfesoresDto profesor) {
-		List<ProfesoresDto> profesores = materia.getProfesores();
+	public void agregarProfesor(MateriaDto materia, ProfesorDto profesor) {
+		List<ProfesorDto> profesores = materia.getProfesores();
 		if (!profesores.contains(profesor)) {
 			profesores.add(profesor);
 		}this.update(materia);

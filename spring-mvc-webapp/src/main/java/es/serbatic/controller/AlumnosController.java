@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.serbatic.dto.AlumnosDto;
+import es.serbatic.dto.AlumnoDto;
 import es.serbatic.services.AlumnosService;
 
 /**
@@ -37,14 +37,14 @@ public class AlumnosController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listarAlumnos(Model model) {
-		List<AlumnosDto> alumnos = alumnosService.findAll();
+		List<AlumnoDto> alumnos = alumnosService.findAll();
 		model.addAttribute("alumnos", alumnos);
 		return new ModelAndView(LIST_VIEW, model.asMap());
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView showNewPage(Model model) {
-		model.addAttribute("alumno", new AlumnosDto());
+		model.addAttribute("alumno", new AlumnoDto());
 		return new ModelAndView(ALUMNO_VIEW, model.asMap());
 	}
 	
@@ -55,7 +55,7 @@ public class AlumnosController {
 	}
 	
 	@RequestMapping(value="new", method=RequestMethod.POST)
-	public String insertarAlumno(@ModelAttribute AlumnosDto alumno, Model model) {
+	public String insertarAlumno(@ModelAttribute AlumnoDto alumno, Model model) {
 		if(alumno.getId() != null) {
 			alumnosService.update(alumno);
 		} else {

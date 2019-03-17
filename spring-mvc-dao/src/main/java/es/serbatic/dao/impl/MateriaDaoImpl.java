@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import es.serbatic.base.dao.impl.GenericDaoImpl;
-import es.serbatic.bom.Alumnos;
-import es.serbatic.dao.AlumnosDao;
+import es.serbatic.bom.Materia;
+import es.serbatic.dao.MateriaDao;
 
 /**
  * Implementa el acceso a datos de la tabla alumnos
@@ -17,13 +17,12 @@ import es.serbatic.dao.AlumnosDao;
  * @author jgarcia
  *
  */
-@Repository("alumnosDao")
-public class AlumnosDaoImpl extends GenericDaoImpl<Alumnos, Long> implements AlumnosDao {
+@Repository("materiaDao")
+public class MateriaDaoImpl extends GenericDaoImpl<Materia, Long> implements MateriaDao {
 
 	@Autowired
-	protected AlumnosDaoImpl(SessionFactory sessionFactory) {
+	protected MateriaDaoImpl(SessionFactory sessionFactory) {
 		super(sessionFactory);
-		// TODO Auto-generated constructor stub
 	}
 
 

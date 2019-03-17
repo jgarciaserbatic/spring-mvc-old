@@ -13,13 +13,15 @@
 	</thead>
 	<tbody>
 		
-			<c:forEach items="${ profesores }" var="profesor">
+			<c:forEach items="${ profesoresEntrada }" var="profesor">
 				<tr>
 					<td>${profesor.id}</td>
 					<td>${profesor.nombre}</td>
 					<td>${profesor.apellido1}</td>
 					<td>${profesor.apellido2}</td>
-					<td>${profesor.materias}</td>
+					<c:forEach items="${ profesor.materias }" var="materia">
+						<td>${materia.nombre}</td>
+					</c:forEach>
 					<td>
 						<a href="<spring:url value="/profesores/delete/${ profesor.id }" ></spring:url>">Eliminar</a>
 						<a href="<spring:url value="/profesores/update/${ profesor.id }" ></spring:url>">Actualizar</a>

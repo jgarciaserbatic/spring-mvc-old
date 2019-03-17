@@ -1,17 +1,17 @@
 package es.serbatic.services;
 
 import es.serbatic.base.services.GenericService;
-import es.serbatic.bom.Materias;
-import es.serbatic.dto.MateriasDto;
-import es.serbatic.dto.ProfesoresDto;
+import es.serbatic.bom.Materia;
+import es.serbatic.dto.MateriaDto;
+import es.serbatic.dto.ProfesorDto;
 
 /**
  * Define las operaciones de negocio de alumnos
  * 
  * @author jgarcia
  */
-public interface MateriasService extends GenericService<MateriasDto, Materias, Long> {
+public interface MateriasService extends GenericService<MateriaDto, Materia, Long> {
 
-	void agregarProfesor(MateriasDto materia, ProfesoresDto profesor);
+	void agregarProfesor(MateriaDto materia, ProfesorDto profesor);
 	
 }

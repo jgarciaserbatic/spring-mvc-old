@@ -5,21 +5,28 @@ package es.serbatic.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.serbatic.dto.MateriasDto;
-import es.serbatic.dto.ProfesoresDto;
+import es.serbatic.dto.MateriaDto;
+import es.serbatic.dto.ProfesorDto;
 import es.serbatic.services.MateriasService;
 import es.serbatic.services.ProfesoresService;
 
@@ -45,34 +52,36 @@ public class ProfesoresController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView listarProfesores(Model model) {
-		List<ProfesoresDto> profesores = profesoresService.findAll();
-		model.addAttribute("profesores", profesores);
+		List<ProfesorDto> profesores = profesoresService.findAll();
+		model.addAttribute("profesoresEntrada", profesores);
 		return new ModelAndView(LIST_VIEW, model.asMap());
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView showNewPage(Model model) {
-		model.addAttribute("profesor", new ProfesoresDto());
-		model.addAttribute("materias", materiasService.findAll());
+		model.addAttribute("profesorEntrada", new ProfesorDto());
 		return new ModelAndView(PROFESOR_VIEW, model.asMap());
 	}
-	
+
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public ModelAndView showUpdateProfesor(@PathVariable Long id, Model model) {
-		model.addAttribute("profesor", profesoresService.findById(id));
-		
-		Map<MateriasDto, Boolean> resul = new HashMap<MateriasDto, Boolean>();
-		
-		for (MateriasDto materia : materiasService.findAll()) {
-			resul.put(materia, true);
-		}
-		
-		model.addAttribute("materias", resul);
+		model.addAttribute("profesorEntrada", profesoresService.findById(id));
 		return new ModelAndView(PROFESOR_VIEW, model.asMap());
 	}
 
 	@RequestMapping(value = "new", method = RequestMethod.POST)
-	public String insertarProfesor(@ModelAttribute ProfesoresDto profesor, Model model) {
+	public String insertarProfesor(@ModelAttribute ProfesorDto profesor, BindingResult result, Model model) {
+
+		System.out.println("Hola");
+		if (result.hasErrors()) {
+			System.out.println("Hay errores...");
+			for (ObjectError error : result.getAllErrors()) {
+				System.out.println("Error procesado: " + error.getDefaultMessage());
+			}
+		}
+
+		System.out.println("Materias: " + profesor.getMaterias().size());
+
 		if (profesor.getId() != null) {
 			profesoresService.update(profesor);
 		} else {
@@ -92,18 +101,14 @@ public class ProfesoresController {
 		return new ModelAndView(ERROR_VIEW);
 	}
 
-	@ModelAttribute("materiasDisponiblesStr")
-	public List<String> getMateriasDisponiblesStr() {
-		List<MateriasDto> materias = materiasService.findAll();
-		List<String> result = new ArrayList<String>();
-		for (MateriasDto materia : materias) {
-			result.add(materia.getNombre());
-		}
-		return result;
-	}
+	@ModelAttribute("materias")
+	public Set<MateriaDto> getMateriasDisponibles() {
+		Set<MateriaDto> result = new HashSet<MateriaDto>();
 
-	@ModelAttribute("materiasDisponibles")
-	public List<MateriasDto> getMateriasDisponibles() {
-		return materiasService.findAll();
+		for (MateriaDto materia : materiasService.findAll()) {
+			result.add(materia);
+		}
+
+		return result;
 	}
 }

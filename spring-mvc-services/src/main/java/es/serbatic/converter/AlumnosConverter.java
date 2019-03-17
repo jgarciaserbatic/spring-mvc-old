@@ -6,8 +6,8 @@ package es.serbatic.converter;
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 
-import es.serbatic.bom.Alumnos;
-import es.serbatic.dto.AlumnosDto;
+import es.serbatic.bom.Alumno;
+import es.serbatic.dto.AlumnoDto;
 
 /**
  * Convierte de Entidad alumnos a Dto
@@ -15,12 +15,12 @@ import es.serbatic.dto.AlumnosDto;
  * @author jgarcia
  *
  */
-public class AlumnosConverter implements Converter<Alumnos, AlumnosDto> {
+public class AlumnosConverter implements Converter<Alumno, AlumnoDto> {
 
 	@Override
-	public AlumnosDto convert(MappingContext<Alumnos, AlumnosDto> context) {
-		Alumnos source = context.getSource();
-		AlumnosDto result = new AlumnosDto();
+	public AlumnoDto convert(MappingContext<Alumno, AlumnoDto> context) {
+		Alumno source = context.getSource();
+		AlumnoDto result = new AlumnoDto();
 		result.setId(source.getId());
 		result.setNombre(source.getNombre());
 		result.setApellido1(source.getApellido1());

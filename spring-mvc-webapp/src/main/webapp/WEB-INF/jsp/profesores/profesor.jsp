@@ -3,11 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <spring:url value="/profesores/new" var="url"></spring:url>
-<spring:url value="/materias" var="urlM"></spring:url>
 <spring:message code="profesores.new.title" var="insertTitle" />
 <spring:message code="profesores.update.title" var="updateTitle" />
 <c:choose>
-	<c:when test="${ profesor.id == null}">
+	<c:when test="${ profesorEntrada.id == null}">
 		<c:set value="${ insertTitle }" var="title" />
 	</c:when>
 	<c:otherwise>
@@ -15,7 +14,7 @@
 	</c:otherwise>
 </c:choose>
 
-<form:form modelAttribute="profesor" action="${ url }">
+<form:form modelAttribute="profesorEntrada" action="${ url }">
 
 	<h1>${ title }</h1>
 	<form:hidden path="id" />
@@ -30,7 +29,9 @@
 	<br />
 	<spring:message code="profesores.materias"></spring:message>
 	<br />
-	<form:checkboxes path="materias" items="${materiasDisponibles}" />
+	<form:select path="materias" items="${ materias }" multiple="true" itemValue="id" itemLabel="nombre"/>
+	
+
 
 	<form:button value="submit">Enviar</form:button>
 </form:form>

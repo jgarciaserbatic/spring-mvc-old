@@ -11,9 +11,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.serbatic.bom.Alumnos;
-import es.serbatic.dao.AlumnosDao;
-import es.serbatic.dto.AlumnosDto;
+import es.serbatic.bom.Alumno;
+import es.serbatic.dao.AlumnoDao;
+import es.serbatic.dto.AlumnoDto;
 import es.serbatic.services.AlumnosService;
 
 /**
@@ -26,7 +26,7 @@ import es.serbatic.services.AlumnosService;
 public class AlumnosServiceImpl implements AlumnosService {
 
 	@Autowired
-	AlumnosDao alumnosDao;
+	AlumnoDao alumnosDao;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -36,34 +36,34 @@ public class AlumnosServiceImpl implements AlumnosService {
 	}
 
 	@Override
-	public AlumnosDto findById(Long id) {
-		Alumnos entity = alumnosDao.findById(id);
-		return modelMapper.map(entity, AlumnosDto.class);
+	public AlumnoDto findById(Long id) {
+		Alumno entity = alumnosDao.findById(id);
+		return modelMapper.map(entity, AlumnoDto.class);
 	}
 
 	@Override
-	public List<AlumnosDto> findAll() {
-		List<AlumnosDto> result = new ArrayList<>();
-		List<Alumnos> found = alumnosDao.findAll();
-		for(Alumnos alumno: found) {
-			result.add(modelMapper.map(alumno, AlumnosDto.class));
+	public List<AlumnoDto> findAll() {
+		List<AlumnoDto> result = new ArrayList<>();
+		List<Alumno> found = alumnosDao.findAll();
+		for(Alumno alumno: found) {
+			result.add(modelMapper.map(alumno, AlumnoDto.class));
 		}
 		return result;
 	}
 
 	@Override
-	public List<AlumnosDto> findAllOrderBy(String[] orderBy, boolean asc) {
+	public List<AlumnoDto> findAllOrderBy(String[] orderBy, boolean asc) {
 		throw new NotYetImplementedException("Método no implementado todavía");
 	}
 
 	@Override
-	public void update(AlumnosDto dto) {
-		Alumnos entity = modelMapper.map(dto, Alumnos.class);
+	public void update(AlumnoDto dto) {
+		Alumno entity = modelMapper.map(dto, Alumno.class);
 		alumnosDao.update(entity);
 	}
 
 	@Override
-	public void saveOrUpdate(AlumnosDto entity) {
+	public void saveOrUpdate(AlumnoDto entity) {
 		if (entity.getId() != null) 
 			if (this.findById(entity.getId()) != null) {
 				this.update(entity);	
@@ -73,9 +73,9 @@ public class AlumnosServiceImpl implements AlumnosService {
 	}
 
 	@Override
-	public AlumnosDto insert(AlumnosDto dto) {
-		Alumnos entity = modelMapper.map(dto, Alumnos.class);
-		dto = modelMapper.map(alumnosDao.insert(entity), AlumnosDto.class);
+	public AlumnoDto insert(AlumnoDto dto) {
+		Alumno entity = modelMapper.map(dto, Alumno.class);
+		dto = modelMapper.map(alumnosDao.insert(entity), AlumnoDto.class);
 		return dto;
 	}
 	
@@ -85,14 +85,14 @@ public class AlumnosServiceImpl implements AlumnosService {
 	}
 
 	@Override
-	public void remove(AlumnosDto entity) {
+	public void remove(AlumnoDto entity) {
 		if (entity.getId() != 0) {
 			this.remove(entity.getId());
 		}
 	}
 
 	@Override
-	public List<AlumnosDto> findByExample(AlumnosDto example) {
+	public List<AlumnoDto> findByExample(AlumnoDto example) {
 		throw new NotYetImplementedException("Método no implementado todavía");
 	}
 }

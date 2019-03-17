@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.serbatic.dto.MateriasDto;
+import es.serbatic.dto.MateriaDto;
 import es.serbatic.services.MateriasService;
 
 
@@ -38,14 +38,14 @@ public class MateriasController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listarMaterias(Model model) {
-		List<MateriasDto> materias = materiasService.findAll();
+		List<MateriaDto> materias = materiasService.findAll();
 		model.addAttribute("materias", materias);
 		return new ModelAndView(LIST_VIEW, model.asMap());
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView showNewPage(Model model) {
-		model.addAttribute("materia", new MateriasDto());
+		model.addAttribute("materia", new MateriaDto());
 		return new ModelAndView(MATERIA_VIEW, model.asMap());
 	}
 	
@@ -56,7 +56,7 @@ public class MateriasController {
 	}
 	
 	@RequestMapping(value="new", method=RequestMethod.POST)
-	public String insertarMateria(@ModelAttribute MateriasDto materia, Model model) {
+	public String insertarMateria(@ModelAttribute MateriaDto materia, Model model) {
 		if(materia.getId() != null) {
 			materiasService.update(materia);
 		} else {

@@ -1,18 +1,17 @@
 package es.serbatic.dto;
 
-import java.util.List;
-
 /**
  * Objeto de transferenca alumno
  * 
  * @author jgarcia
  *
  */
-public class MateriasDto {
+public class AlumnoDto {
 
 	private Long id;
 	private String nombre;
-	private List<ProfesoresDto> profesores;
+	private String apellido1;
+	private String apellido2;
 	/**
 	 * @return the id
 	 */
@@ -38,15 +37,27 @@ public class MateriasDto {
 		this.nombre = nombre;
 	}
 	/**
+	 * @return the apellido1
+	 */
+	public String getApellido1() {
+		return apellido1;
+	}
+	/**
+	 * @param apellido1 the apellido1 to set
+	 */
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+	/**
 	 * @return the apellido2
 	 */
-	public List<ProfesoresDto> getProfesores() {
-		return profesores;
+	public String getApellido2() {
+		return apellido2;
 	}
 	/**
 	 * @param apellido2 the apellido2 to set
 	 */
-	public void setProfesores(List<ProfesoresDto> profesores) {
-		this.profesores = profesores;
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
 	}
 }
