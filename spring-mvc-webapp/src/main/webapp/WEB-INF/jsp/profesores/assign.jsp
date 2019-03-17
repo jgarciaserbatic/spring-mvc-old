@@ -19,11 +19,15 @@
 					<td>${profesor.surname1}</td>
 					<td>${profesor.surname2}</td>
 					<td>
-						<a href="<spring:url value="/profesores/delete/${ profesor.id }" ></spring:url>">Eliminar</a>
-						<a href="<spring:url value="/profesores/update/${ profesor.id }" ></spring:url>">Actualizar</a>
+						<a href="<spring:url value="/profesores/assign/${ profesor.id }/${ materia }" ></spring:url>">Asignar Materia</a>
 					</td>
 				</tr>
 			</c:forEach>
 		
 	</tbody>
+	
+	<spring:url value="/profesores/" var="url"></spring:url>
+	<form:form action="${ url }" >
+		<button type="submit"><spring:message code="profesores.options.add"></spring:message></button>
+	</form:form>
 </table>

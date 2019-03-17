@@ -2,25 +2,33 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<spring:url value="/profesores/new" var="url"></spring:url>
-<spring:message code="profesores.new.title" var="insertTitle"/>
-<spring:message code="profesores.update.title" var="updateTitle"/>
-<c:choose >
-	<c:when test="${ profesor.id == null}">
-		<c:set value="${ insertTitle }" var="title" />
-	</c:when>
-	<c:otherwise>
-		<c:set  value="${ updateTitle }" var="title" />
-	</c:otherwise>
-</c:choose>
-
-<form:form modelAttribute="profesor" action="${ url }" >
+<table>
+	<thead>
+		<th>Id</th>
+		<th><spring:message code="profesores.nombre"></spring:message></th>
+		<th><spring:message code="profesores.apellido1"></spring:message></th>
+		<th><spring:message code="profesores.apellido2"></spring:message></th>
+		<th><spring:message code="profesores.options"></spring:message></th>
+	</thead>
+	<tbody>
+		
+			<c:forEach items="${ profesores }" var="profesor">
+				<tr>
+					<td>${profesor.id}</td>
+					<td>${profesor.name}</td>
+					<td>${profesor.surname1}</td>
+					<td>${profesor.surname2}</td>
+					<td>
+						<a href="<spring:url value="/profesores/delete/${ profesor.id }" ></spring:url>">Eliminar</a>
+						<a href="<spring:url value="/profesores/update/${ profesor.id }" ></spring:url>">Actualizar</a>
+					</td>
+				</tr>
+			</c:forEach>
+		
+	</tbody>
 	
-	<h1>${ title }</h1>
-	<form:hidden path="id"/>
-	<spring:message code="profesores.nombre"></spring:message>: <form:input path="nombre" /><br/>
-	<spring:message code="profesores.apellido1"></spring:message><form:input path="apellido1"/><br/>
-	<spring:message code="profesores.apellido2"></spring:message><form:input path="apellido2"/><br/>
-	
-	<form:button value="submit">Enviar</form:button>
-</form:form>
+	<spring:url value="/profesores/" var="url"></spring:url>
+	<form:form action="${ url }" >
+		<button type="submit"><spring:message code="profesores.options.add"></spring:message></button>
+	</form:form>
+</table>
