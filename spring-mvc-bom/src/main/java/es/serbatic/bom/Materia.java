@@ -2,15 +2,12 @@ package es.serbatic.bom;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,15 +20,6 @@ public class Materia implements Serializable {
 	private Long id;
 	@Column(name = "NOMBRE")
 	private String nombre;
-	@ManyToMany(cascade= {CascadeType.ALL})
-	@JoinTable(
-			name="materia_profesor",
-			joinColumns = {
-					@JoinColumn(name = "id_profesor")
-					},
-			inverseJoinColumns = {
-					@JoinColumn(name = "id_materia")
-			})
 	public Long getId() {
 		return id;
 	}
@@ -44,5 +32,6 @@ public class Materia implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 	
 }

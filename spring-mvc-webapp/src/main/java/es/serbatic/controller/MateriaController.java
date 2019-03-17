@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import es.serbatic.dto.MateriaDto;
 import es.serbatic.dto.ProfesoresDto;
 import es.serbatic.services.ProfesoresService;
-import es.serbatic.services.MateriaProfesoresService;
 import es.serbatic.services.MateriaService;
 
 @RequestMapping("materia")
@@ -30,9 +31,6 @@ public class MateriaController {
 	
 	@Autowired
 	MateriaService materiaService;
-	
-	@Autowired
-	MateriaProfesoresService materiaProfesorService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listarMaterias(Model model) {
@@ -64,7 +62,7 @@ public class MateriaController {
 	}
 	
 	@RequestMapping("delete/{id}")
-	public String eliminarAlumno(@PathVariable Long id, Model model) {
+	public String eliminarMateria(@PathVariable Long id, Model model) {
 		materiaService.remove(id);
 		return "redirect:/materia";
 	}
@@ -77,12 +75,9 @@ public class MateriaController {
 		return new ModelAndView(ASIGNA_VIEW, model.asMap());
 	}
 	
-	@RequestMapping(value="asignar/{id}",method=RequestMethod.POST)
-	public String setMateriaProfesor(@PathVariable Long id, Model model, @ModelAttribute ProfesoresDto profesor ) {
-		
-		
-		//materiaProfesorService.guardarIdProfesor(profesor.getId());
-		//materiaProfesorService.guardarIdAsignatura(id);
+	@RequestMapping(value="asignar/{id}", method=RequestMethod.POST)
+	public String setMateriaProfesor(@PathVariable Long profid, @RequestParam("materiaid") Long idmateria ) {
+		System.out.println("id de la materia: " + idmateria + " id del profesor: " + profid );
 		return "redirect:/materia";
 	}
 	
@@ -92,6 +87,10 @@ public class MateriaController {
 		return new ModelAndView(ERROR_VIEW);
 	}
 	
-	
+	@ModelAttribute("materia")
+	public List<MateriaDto> getTodasMaterias(){
+		List<MateriaDto> m = materiaService.findAll();
+		return m;
+	}
 	
 }

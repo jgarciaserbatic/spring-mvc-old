@@ -1,6 +1,9 @@
 package es.serbatic.bom;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,10 +38,15 @@ public class Profesores implements Serializable{
 			inverseJoinColumns = {
 					@JoinColumn(name = "id_profesor")
 			})
-
-	
+	private Set<Materia> materiaslista = new HashSet<>();
 	public Long getId() {
 		return id;
+	}
+	public Set<Materia> getMateriaslista() {
+		return materiaslista;
+	}
+	public void setMateriaslista(Set<Materia> materiaslista) {
+		this.materiaslista = materiaslista;
 	}
 	public void setId(Long id) {
 		this.id = id;

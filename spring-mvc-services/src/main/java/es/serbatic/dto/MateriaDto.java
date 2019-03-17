@@ -16,5 +16,4 @@ public class MateriaDto {
 		this.nombre = nombre;
 	}
 	
-	
 }

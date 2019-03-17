@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.serbatic.bom.Materia;
+import es.serbatic.dto.MateriaDto;
 import es.serbatic.dto.ProfesoresDto;
+import es.serbatic.services.MateriaService;
 import es.serbatic.services.ProfesoresService;
 
 @RequestMapping("profesor")
@@ -26,6 +30,9 @@ public class ProfesorController {
 	
 	@Autowired
 	ProfesoresService profesoresService;
+	
+	@Autowired
+	MateriaService materiaService;
 		
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listarAlumnos(Model model) {
@@ -42,6 +49,7 @@ public class ProfesorController {
 	
 	@RequestMapping(value="new", method=RequestMethod.POST)
 	public String insertarProfe(@ModelAttribute ProfesoresDto profesor, Model model) {
+		
 		if(profesor.getId() != null ) {
 			profesoresService.update(profesor);
 		} else {
@@ -62,5 +70,11 @@ public class ProfesorController {
 	@ExceptionHandler
 	public ModelAndView handleException(Exception ex) {
 		return new ModelAndView(ERROR_VIEW);
+	}
+	
+	@ModelAttribute("materias")
+	public List<MateriaDto> getTodasMaterias(){
+		List<MateriaDto> m = materiaService.findAll();
+		return m;
 	}
 }

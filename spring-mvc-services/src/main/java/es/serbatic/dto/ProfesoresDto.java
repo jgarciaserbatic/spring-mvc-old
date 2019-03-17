@@ -1,10 +1,22 @@
 package es.serbatic.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import es.serbatic.bom.Materia;
+
 public class ProfesoresDto {
 	private Long id;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	private Set<Materia> materiaslista = new HashSet<>();
+	public Set<Materia> getMateriaslista() {
+		return materiaslista;
+	}
+	public void setMateriaslista(Set<Materia> materiaslista) {
+		this.materiaslista = materiaslista;
+	}
 	public Long getId() {
 		return id;
 	}
