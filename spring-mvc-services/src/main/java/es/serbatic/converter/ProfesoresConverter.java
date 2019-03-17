@@ -32,11 +32,10 @@ public class ProfesoresConverter implements Converter<Profesores, ProfesoresDto>
 		result.setNombre(source.getNombre());
 		result.setApellido1(source.getApellido1());
 		result.setApellido2(source.getApellido2());
-		for(Materias materia : source.getMaterias()) {
+		for(Materias materia : source.getMateriaList()) {
 			MateriasDto materiasDto = new MateriasDto();
 			materiasDto.setId(materia.getId());
 			materiasDto.setNombre(materia.getNombre());
-			materiasDto.setHoras(materia.getHoras());
 			result.addMaterias(materiasDto);
 		}
 		return result;

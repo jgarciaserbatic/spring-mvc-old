@@ -1,24 +1,31 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <table>
 	<thead>
 		<th>Id</th>
 		<th><spring:message code="materias.nombre"></spring:message></th>
-		<th><spring:message code="materias.horas"></spring:message></th>
+		<th><spring:message code="materias.fechaExamen"></spring:message></th>
 		<th><spring:message code="materias.options"></spring:message></th>
 	</thead>
 	<tbody>
 		
-			<c:forEach items="${ materias }" var="materia">
+			<c:forEach items="${ listMaterias }" var="materias">
 				<tr>
-					<td>${materia.id}</td>
-					<td>${materia.nombre}</td>
-					<td>${materia.horas}</td>
+					<td>${materias.id}</td>
+					<td>${materias.nombre}</td>
+
+						<td>
+							<fmt:parseDate value="${materias.fechaExamen}" pattern="yyyy-MM-dd HH:mm" var="myDate"/>
+							<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd"/>
+						</td>
 					<td>
-						<a href="<spring:url value="/materias/delete/${ materia.id }" ></spring:url>">Eliminar</a>
-						<a href="<spring:url value="/materias/update/${ materia.id }" ></spring:url>">Actualizar</a>
+						<a href="<spring:url value="/materias/delete/${ materias.id }" ></spring:url>">Eliminar</a>
+						<a href="<spring:url value="/materias/update/${ materias.id }" ></spring:url>">Actualizar</a>
 					</td>
 				</tr>
 			</c:forEach>

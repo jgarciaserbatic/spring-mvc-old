@@ -23,7 +23,6 @@ public class MateriasConverter implements Converter<Materias, MateriasDto> {
 		MateriasDto result = new MateriasDto();
 		result.setId(source.getId());
 		result.setNombre(source.getNombre());
-		result.setHoras(source.getHoras());
 		return result; 
 	}
 

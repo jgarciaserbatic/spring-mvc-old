@@ -1,51 +1,41 @@
 package es.serbatic.dto;
 
-/**
- * Objeto de transferenca materias
- * 
- * @author jgarcia
- *
- */
-public class MateriasDto {
+import java.util.Date;
+import java.util.List;
 
+public class MateriasDto {
+	
 	private Long id;
 	private String nombre;
-	private Long horas;
-	/**
-	 * @return the id
-	 */
+	private Date fechaExamen;
+	
+	private List<ProfesoresDto> profesor;
+	
+	
 	public Long getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/**
-	 * @return the nombre
-	 */
 	public String getNombre() {
 		return nombre;
 	}
-	/**
-	 * @param nombre the nombre to set
-	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	/**
-	 * @return the horas
-	 */
-	public Long getHoras() {
-		return horas;
+	public Date getFechaExamen() {
+		return fechaExamen;
 	}
-	/**
-	 * @param horas the horas to set
-	 */
-	public void setHoras(Long horas) {
-		this.horas = horas;
+	public void setFechaExamen(Date fechaExamen) {
+		this.fechaExamen = fechaExamen;
 	}
+	public List<ProfesoresDto> getProfesor() {
+		return profesor;
+	}
+	public void setProfesor(List<ProfesoresDto> profesor) {
+		this.profesor = profesor;
+	}
+
 	
 }

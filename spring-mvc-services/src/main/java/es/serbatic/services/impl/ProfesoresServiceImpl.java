@@ -1,48 +1,34 @@
-/**
- * 
- */
 package es.serbatic.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.cfg.NotYetImplementedException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.serbatic.bom.Materias;
 import es.serbatic.bom.Profesores;
-import es.serbatic.dao.MateriasDao;
 import es.serbatic.dao.ProfesoresDao;
 import es.serbatic.dto.ProfesoresDto;
 import es.serbatic.services.ProfesoresService;
 
-/**
- * Implementa la logica del servicio de profesores
- * 
- * @author jgarcia
- *
- */
 @Service("profesoresService")
-public class ProfesoresServiceImpl implements ProfesoresService {
+public class ProfesoresServiceImpl implements ProfesoresService{
 
 	@Autowired
 	ProfesoresDao profesoresDao;
-	@Autowired
-	MateriasDao materiasDao;
 	
 	@Autowired
-	private ModelMapper modelMapper;
-		
+	private ModelMapper modelMapper;	
+	
 	public ProfesoresServiceImpl() {
 		super();
 	}
-
+	
 	@Override
 	public ProfesoresDto findById(Long id) {
-		Profesores entity = profesoresDao.findById(id);
-		return modelMapper.map(entity, ProfesoresDto.class);
+		
+		return modelMapper.map(profesoresDao.findById(id), ProfesoresDto.class); 
 	}
 
 	@Override
@@ -57,46 +43,45 @@ public class ProfesoresServiceImpl implements ProfesoresService {
 
 	@Override
 	public List<ProfesoresDto> findAllOrderBy(String[] orderBy, boolean asc) {
-		throw new NotYetImplementedException("Método no implementado todavía");
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public void update(ProfesoresDto dto) {
-		Profesores entity = modelMapper.map(dto, Profesores.class);
-		List<Materias> materias = new ArrayList<>();
-		for(String idMateria: dto.getSelectedMaterias()) {
-			Long id = Long.valueOf(idMateria);
-			materias.add(materiasDao.findById(id));
-			
-		}
-		entity.setMaterias(materias);
-		profesoresDao.update(entity);
+	public void update(ProfesoresDto entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void saveOrUpdate(ProfesoresDto entity) {
-		throw new NotYetImplementedException("Método no implementado todavía");
+
+		profesoresDao.saveOrUpdate( modelMapper.map(entity, Profesores.class) );
+		
 	}
 
 	@Override
-	public ProfesoresDto insert(ProfesoresDto dto) {
-		Profesores entity = modelMapper.map(dto, Profesores.class);
-		dto = modelMapper.map(profesoresDao.insert(entity), ProfesoresDto.class);
-		return dto;
-	}
-	
-	@Override
-	public void remove(Long id) {
-		profesoresDao.remove(id);
+	public ProfesoresDto insert(ProfesoresDto entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void remove(ProfesoresDto entity) {
-		throw new NotYetImplementedException("Método no implementado todavía");
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Long id) {
+		
+		profesoresDao.remove(id);
 	}
 
 	@Override
 	public List<ProfesoresDto> findByExample(ProfesoresDto example) {
-		throw new NotYetImplementedException("Método no implementado todavía");
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }
