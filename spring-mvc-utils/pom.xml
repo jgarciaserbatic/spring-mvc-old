@@ -11,7 +11,7 @@
 	<artifactId>spring-mvc-utils</artifactId>
 	<packaging>jar</packaging>
 	
-	<name>Curso Spring Web MVC</name>
+	<name>Curso Spring Utils</name>
 	<url>http://maven.apache.org</url>
 		
 	<dependencies>

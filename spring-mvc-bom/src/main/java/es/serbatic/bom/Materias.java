@@ -1,13 +1,14 @@
 package es.serbatic.bom;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PROFESORES")
-public class Profesores implements Serializable {
+@Table(name = "MATERIAS")
+public class Materias implements Serializable {
 
 	/**
 	 * 
@@ -18,19 +19,11 @@ public class Profesores implements Serializable {
 	private Long id;
 	@Column(name = "NOMBRE")
 	private String nombre;
-	@Column(name = "APELLIDO_1")
-	private String apellido1;
-	@Column(name = "APELLIDO_2")
-	private String apellido2;
-	@ManyToMany(cascade= {CascadeType.ALL})
-	@JoinTable(
-			name="profesor_materia",
-			joinColumns = {
-					@JoinColumn(name = "id_materia")},
-			inverseJoinColumns = {
-					@JoinColumn(name = "id_profesor")
-			})
-	private List<Materias> materias;
+	@Column(name = "HORAS")
+	private Long horas;
+	
+	@ManyToMany(mappedBy = "materias")
+    private List<Profesores> profesores = new ArrayList<>();
 	/**
 	 * @return the id
 	 */
@@ -56,41 +49,30 @@ public class Profesores implements Serializable {
 		this.nombre = nombre;
 	}
 	/**
-	 * @return the apellido1
+	 * @return the horas
 	 */
-	public String getApellido1() {
-		return apellido1;
+	public Long getHoras() {
+		return horas;
 	}
 	/**
-	 * @param apellido1 the apellido1 to set
+	 * @param horas the horas to set
 	 */
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
-	}
-	/**
-	 * @return the apellido2
-	 */
-	public String getApellido2() {
-		return apellido2;
-	}
-	/**
-	 * @param apellido2 the apellido2 to set
-	 */
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
+	public void setHoras(Long horas) {
+		this.horas = horas;
 	}
 	
+	
 	/**
-	 * @return the materias
+	 * @return the profesores
 	 */
-	public List<Materias> getMaterias() {
-		return materias;
+	public List<Profesores> getProfesores() {
+		return profesores;
 	}
 	/**
-	 * @param materias the materias to set
+	 * @param profesores the profesores to set
 	 */
-	public void setMaterias(List<Materias> materias) {
-		this.materias = materias;
+	public void setProfesores(List<Profesores> profesores) {
+		this.profesores = profesores;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -99,8 +81,7 @@ public class Profesores implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((apellido1 == null) ? 0 : apellido1.hashCode());
-		result = prime * result + ((apellido2 == null) ? 0 : apellido2.hashCode());
+		result = prime * result + ((horas == null) ? 0 : horas.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
@@ -116,16 +97,11 @@ public class Profesores implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Profesores other = (Profesores) obj;
-		if (apellido1 == null) {
-			if (other.apellido1 != null)
+		Materias other = (Materias) obj;
+		if (horas == null) {
+			if (other.horas != null)
 				return false;
-		} else if (!apellido1.equals(other.apellido1))
-			return false;
-		if (apellido2 == null) {
-			if (other.apellido2 != null)
-				return false;
-		} else if (!apellido2.equals(other.apellido2))
+		} else if (!horas.equals(other.horas))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -139,4 +115,5 @@ public class Profesores implements Serializable {
 			return false;
 		return true;
 	}
+	
 }

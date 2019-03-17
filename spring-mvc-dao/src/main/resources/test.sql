@@ -1,39 +1,75 @@
 --
-
 -- Estructura de tabla para la tabla `alumnos`
-DROP TABLE `alumnos`;
-CREATE TABLE IF NOT EXISTS `alumnos` (
- `ID` int(11) NOT NULL,
- `NOMBRE` varchar(250) NOT NULL,
- `APELLIDO_1` varchar(250) NOT NULL,
- `APELLIDO_2` varchar(250) NOT NULL);--
+--
 
+CREATE TABLE `alumnos` (
+  `ID` int(11) NOT NULL,
+  `NOMBRE` varchar(250) NOT NULL,
+  `APELLIDO_1` varchar(250) NOT NULL,
+  `APELLIDO_2` varchar(250) NOT NULL
+);
 
-----
+--
+-- Índices para tablas volcadas
+--
 
+--
 -- Indices de la tabla `alumnos`
-
 --
 ALTER TABLE `alumnos`
- ADD PRIMARY KEY (`ID`);
-COMMIT;--
-
--- Estructura de tabla para la tabla `profesores`
-DROP TABLE `profesores`;
-CREATE TABLE IF NOT EXISTS `profesores` (
- `ID` int(11) NOT NULL,
- `NOMBRE` varchar(250) NOT NULL,
- `APELLIDO_1` varchar(250) NOT NULL,
- `APELLIDO_2` varchar(250) NOT NULL);--
+  ADD PRIMARY KEY (`ID`);
+COMMIT;
 
 
-----
-
--- Indices de la tabla `profesores`
+CREATE TABLE `profesor` (
+  `ID` int(11) NOT NULL,
+  `NOMBRE` varchar(250) NOT NULL,
+  `APELLIDO_1` varchar(250) NOT NULL,
+  `APELLIDO_2` varchar(250) NOT NULL,
+  `FECHA_ALTA` date
+);
 
 --
-ALTER TABLE `profesores`
+-- Índices para tablas volcadas
+--
 
- ADD PRIMARY KEY (`ID`);
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `profesor`
+  ADD PRIMARY KEY (`ID`);
+COMMIT;
 
-COMMIT;--
+
+CREATE TABLE `materia` (
+  `ID` int(11) NOT NULL,
+  `NOMBRE` varchar(250) NOT NULL
+);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `materia`
+  ADD PRIMARY KEY (`ID`);
+COMMIT;
+
+CREATE TABLE `profesor_materia` (
+  `ID_PROFESOR` int(11) NOT NULL,
+   `ID_MATERIA` int(11) NOT NULL
+);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `profesor_materia`
+  ADD PRIMARY KEY (`ID_PROFESOR`, `ID_MATERIA`);
+COMMIT;
+

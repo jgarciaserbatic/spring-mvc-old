@@ -5,7 +5,7 @@ import es.serbatic.bom.Profesores;
 import es.serbatic.dto.ProfesoresDto;
 
 /**
- * Define las operaciones de negocio de alumnos
+ * Define las operaciones de negocio de profesores
  * 
  * @author jgarcia
  */

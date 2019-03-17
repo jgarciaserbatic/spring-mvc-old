@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package es.serbatic.services.impl;
 
 import java.util.ArrayList;
@@ -8,13 +11,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.serbatic.bom.Materias;
 import es.serbatic.bom.Profesores;
+import es.serbatic.dao.MateriasDao;
 import es.serbatic.dao.ProfesoresDao;
 import es.serbatic.dto.ProfesoresDto;
 import es.serbatic.services.ProfesoresService;
 
 /**
- * Implementa la logica del servicio de Profesores
+ * Implementa la logica del servicio de profesores
  * 
  * @author jgarcia
  *
@@ -24,11 +29,12 @@ public class ProfesoresServiceImpl implements ProfesoresService {
 
 	@Autowired
 	ProfesoresDao profesoresDao;
+	@Autowired
+	MateriasDao materiasDao;
 	
 	@Autowired
-	ModelMapper modelMapper;
-	
-	
+	private ModelMapper modelMapper;
+		
 	public ProfesoresServiceImpl() {
 		super();
 	}
@@ -57,12 +63,19 @@ public class ProfesoresServiceImpl implements ProfesoresService {
 	@Override
 	public void update(ProfesoresDto dto) {
 		Profesores entity = modelMapper.map(dto, Profesores.class);
+		List<Materias> materias = new ArrayList<>();
+		for(String idMateria: dto.getSelectedMaterias()) {
+			Long id = Long.valueOf(idMateria);
+			materias.add(materiasDao.findById(id));
+			
+		}
+		entity.setMaterias(materias);
 		profesoresDao.update(entity);
 	}
 
 	@Override
 	public void saveOrUpdate(ProfesoresDto entity) {
-		throw new NotYetImplementedException("Metodo no implementado todavía");
+		throw new NotYetImplementedException("Método no implementado todavía");
 	}
 
 	@Override
