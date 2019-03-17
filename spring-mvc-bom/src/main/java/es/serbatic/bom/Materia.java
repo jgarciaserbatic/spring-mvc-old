@@ -72,7 +72,6 @@ public class Materia implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((profesores == null) ? 0 : profesores.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;

@@ -4,9 +4,7 @@
 package es.serbatic.converter;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
@@ -37,8 +35,9 @@ public class ProfesoresConverter implements Converter<Profesor, ProfesorDto> {
 		result.setNombre(source.getNombre());
 		result.setApellido1(source.getApellido1());
 		result.setApellido2(source.getApellido2());
+		result.setFechaAlta(source.getFechaAlta());
 
-		Set<MateriaDto> resultList = new HashSet<MateriaDto>();
+		List<MateriaDto> resultList = new ArrayList<MateriaDto>();
 
 		for (Materia materia : source.getMaterias()) {
 			resultList.add(materiasService.findById(materia.getId()));

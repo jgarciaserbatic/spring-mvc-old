@@ -2,9 +2,8 @@ package es.serbatic.bom;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -30,11 +29,15 @@ public class Profesor implements Serializable {
 	@NotEmpty @Column(name = "APELLIDO_2", nullable=false)
 	private String apellido2;
 	
+	@Column(name = "FECHA_ALTA")
+	@Temporal(TemporalType.DATE)
+	private Date fechaAlta;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "profesor_materia", 
 		joinColumns = @JoinColumn(name = "PROFESOR_ID", referencedColumnName="ID"),
 		inverseJoinColumns = @JoinColumn(name = "MATERIA_ID", referencedColumnName="ID"))
-	private Set<Materia> materias = new HashSet<Materia>();
+	private List<Materia> materias = new ArrayList<Materia>();
 
 	/**
 	 * @return the id
@@ -96,12 +99,20 @@ public class Profesor implements Serializable {
 		this.apellido2 = apellido2;
 	}
 
-	public Set<Materia> getMaterias() {
+	public List<Materia> getMaterias() {
 		return materias;
 	}
 
-	public void setMaterias(Set<Materia> materias) {
+	public void setMaterias(List<Materia> materias) {
 		this.materias = materias;
+	}
+	
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 
 	/*
@@ -115,7 +126,7 @@ public class Profesor implements Serializable {
 		int result = 1;
 		result = prime * result + ((apellido1 == null) ? 0 : apellido1.hashCode());
 		result = prime * result + ((apellido2 == null) ? 0 : apellido2.hashCode());
-		result = prime * result + ((materias == null) ? 0 : materias.hashCode());
+		result = prime * result + ((fechaAlta == null) ? 0 : fechaAlta.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
@@ -149,6 +160,11 @@ public class Profesor implements Serializable {
 			if (other.materias != null)
 				return false;
 		} else if (!materias.equals(other.materias))
+			return false;
+		if (fechaAlta == null) {
+			if (other.fechaAlta != null)
+				return false;
+		} else if (!fechaAlta.equals(other.fechaAlta))
 			return false;
 		if (id == null) {
 			if (other.id != null)

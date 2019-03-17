@@ -27,9 +27,12 @@
 	<spring:message code="profesores.apellido2"></spring:message>
 	<form:input path="apellido2" />
 	<br />
+	<spring:message code="profesores.fechaAlta"></spring:message>
+	<form:input type="date" path="fechaAlta" />
+	<br />
 	<spring:message code="profesores.materias"></spring:message>
 	<br />
-	<form:select path="materias" items="${ materias }" multiple="true" itemValue="id" itemLabel="nombre"/>
+	<form:checkboxes path="materias" values="materias" items="${ materias }" multiple="true" itemLabel="nombre"/>
 	
 
 

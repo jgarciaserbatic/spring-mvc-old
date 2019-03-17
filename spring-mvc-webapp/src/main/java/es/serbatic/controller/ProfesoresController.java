@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.validation.Valid;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,7 +74,6 @@ public class ProfesoresController {
 	@RequestMapping(value = "new", method = RequestMethod.POST)
 	public String insertarProfesor(@ModelAttribute ProfesorDto profesor, BindingResult result, Model model) {
 
-		System.out.println("Hola");
 		if (result.hasErrors()) {
 			System.out.println("Hay errores...");
 			for (ObjectError error : result.getAllErrors()) {
@@ -80,7 +81,8 @@ public class ProfesoresController {
 			}
 		}
 
-		System.out.println("Materias: " + profesor.getMaterias().size());
+		// Obtenemos materias aleatorias para crear relaccion de ejemplo
+		profesor.setMaterias(obtenerMateriasEjemploRamdom());
 
 		if (profesor.getId() != null) {
 			profesoresService.update(profesor);
@@ -102,13 +104,26 @@ public class ProfesoresController {
 	}
 
 	@ModelAttribute("materias")
-	public Set<MateriaDto> getMateriasDisponibles() {
-		Set<MateriaDto> result = new HashSet<MateriaDto>();
+	public List<MateriaDto> getMateriasDisponibles() {
+		return materiasService.findAll();
+	}
 
-		for (MateriaDto materia : materiasService.findAll()) {
-			result.add(materia);
+	private List<MateriaDto> obtenerMateriasEjemploRamdom() {
+
+		// Codigo de prueba para enlazar materias con profesores
+		List<MateriaDto> materiasDisponibles = materiasService.findAll();
+		List<MateriaDto> result = new ArrayList<MateriaDto>();
+
+		if (materiasDisponibles.size() > 0) {
+
+			int numMateriasResultado = ThreadLocalRandom.current().nextInt(1, materiasDisponibles.size() + 1);
+
+			for (int i = 0; i < numMateriasResultado; i++) {
+				result.add(materiasDisponibles.get(i));
+			}
 		}
 
 		return result;
+
 	}
 }

@@ -15,7 +15,9 @@
 				<tr>
 					<td>${materia.id}</td>
 					<td>${materia.nombre}</td>
-					<td>${materia.profesores}</td>
+					<td>
+						<c:forEach items="${materia.profesores}" var="profesor">${ profesor.nombre } ${ profesor.apellido1 }</c:forEach>
+					</td>
 					<td>
 						<a href="<spring:url value="/materias/delete/${ materia.id }" ></spring:url>">Eliminar</a>
 						<a href="<spring:url value="/materias/update/${ materia.id }" ></spring:url>">Actualizar</a>
