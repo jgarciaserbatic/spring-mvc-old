@@ -5,10 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -18,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.serbatic.dto.AlumnosDto;
 import es.serbatic.dto.ProfesoresDto;
 import es.serbatic.services.ProfesoresService;
+import es.serbatic.validation.impl.ValidatorProfesores;
 
 /**
  * @author lclemente
@@ -37,6 +42,10 @@ public class ProfesoresController {
 	@Autowired
 	ProfesoresService profesoresService;
 
+	@ModelAttribute("profesor")
+	public ProfesoresDto populateForm() {
+		return new ProfesoresDto();
+	}
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView listarProfesores(Model model) {
 		List<ProfesoresDto> profesores = profesoresService.findAll();
@@ -47,7 +56,9 @@ public class ProfesoresController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView showNewPage(Model model) {
 		ModelAndView view;
-		model.addAttribute("profesor", new ProfesoresDto());
+		if (!model.containsAttribute("profesor")) {
+			model.addAttribute("profesor", new ProfesoresDto());
+		}
 		view = new ModelAndView(PROFESORES_VIEW, model.asMap());
 		return view;
 	}
@@ -60,27 +71,32 @@ public class ProfesoresController {
 		return view;
 	}
 
-	@RequestMapping(value = "new", method = RequestMethod.POST)
-	public String insertarProfesor(@ModelAttribute ProfesoresDto profesor, Model model) {
-		if (profesor.getId() != null) {
-			profesoresService.update(profesor);
-		} else {
-			profesoresService.insert(profesor);
+	@RequestMapping(value="new", method=RequestMethod.POST)
+	public ModelAndView insertarAlumno( @ModelAttribute("profesor") @Valid ProfesoresDto profesor, BindingResult result,  Model model) {
+		ModelAndView view;
+		if(result.hasErrors()) {
+			view = this.showNewPage(model);
+		}else {
+			if(profesor.getId() != null) {
+				profesoresService.update(profesor);
+			} else {
+				profesoresService.insert(profesor);
+			}
+			view = this.listarProfesores(model);
 		}
-		return "redirect:/profesores";
+		
+		return view;
 	}
-
 	@RequestMapping("delete/{id}")
 	public String eliminarProfesor(@PathVariable Long id, Model model) {
 		profesoresService.remove(id);
 		return "redirect:/profesores";
 	}
-	@InitBinder("profesor")
+	@InitBinder
     public void initBinder(WebDataBinder binder) {
+		binder.setValidator(new ValidatorProfesores());
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         
-        // Con este metodo de DateFormat, se puede evitar la excepcion que lanza el Formulario si no introduces
-        // ninguna fecha y esta se queda a null
         df.setLenient(false);
         
         binder.registerCustomEditor(Date.class, new CustomDateEditor(df, true));

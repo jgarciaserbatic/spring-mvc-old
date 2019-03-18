@@ -65,7 +65,7 @@ public class AlumnosController {
 	}
 	
 	@RequestMapping(value="new", method=RequestMethod.POST)
-	public ModelAndView insertarAlumno( @ModelAttribute @Valid AlumnosDto alumno, BindingResult result,  Model model) {
+	public ModelAndView insertarAlumno( @ModelAttribute("alumno") @Valid AlumnosDto alumno, BindingResult result,  Model model) {
 		ModelAndView view;
 		if(result.hasErrors()) {
 			view = this.showNewPage(model);

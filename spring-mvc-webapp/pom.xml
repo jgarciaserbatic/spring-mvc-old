@@ -20,6 +20,12 @@
 			<artifactId>spring-mvc-services</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+			<dependency>
+			<groupId>es.serbatic</groupId>
+			<artifactId>spring-mvc-utils</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
 		<!-- SPRING MVC -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
