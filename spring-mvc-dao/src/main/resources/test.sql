@@ -10,7 +10,7 @@ CREATE TABLE `alumnos` (
 );
 
 --
--- Índices para tablas volcadas
+-- Indices para tablas volcadas
 --
 
 --
@@ -21,55 +21,56 @@ ALTER TABLE `alumnos`
 COMMIT;
 
 
-CREATE TABLE `profesor` (
-  `ID` int(11) NOT NULL,
+--
+-- Estructura de tabla para la tabla `profesores`
+--
+DROP TABLE `profesores`;
+
+CREATE TABLE `profesores` (
+  `IDPROFESOR` int(11) NOT NULL,
   `NOMBRE` varchar(250) NOT NULL,
   `APELLIDO_1` varchar(250) NOT NULL,
   `APELLIDO_2` varchar(250) NOT NULL,
-  `FECHA_ALTA` date
+  `TELEFONO` varchar(250) NOT NULL
 );
 
 --
--- Índices para tablas volcadas
+-- Indices para tablas volcadas
 --
 
 --
 -- Indices de la tabla `alumnos`
 --
-ALTER TABLE `profesor`
+ALTER TABLE `profesores`
   ADD PRIMARY KEY (`ID`);
 COMMIT;
 
 
-CREATE TABLE `materia` (
-  `ID` int(11) NOT NULL,
-  `NOMBRE` varchar(250) NOT NULL
+CREATE TABLE `materias` (
+  `IDMATERIA` int(11) NOT NULL,
+  `NOMBRE` varchar(250) NOT NULL,
+  `FECHAEXAMEN` date
 );
 
 --
--- Índices para tablas volcadas
+-- Indices para tablas volcadas
 --
 
 --
 -- Indices de la tabla `alumnos`
 --
-ALTER TABLE `materia`
+ALTER TABLE `materias`
   ADD PRIMARY KEY (`ID`);
 COMMIT;
+
+DROP TABLE  `profesor_materia`;
 
 CREATE TABLE `profesor_materia` (
-  `ID_PROFESOR` int(11) NOT NULL,
-   `ID_MATERIA` int(11) NOT NULL
+  `IDMATERIA` int(11) NOT NULL,
+  `IDPROFESOR` int(11) NOT NULL,
 );
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `alumnos`
---
 ALTER TABLE `profesor_materia`
-  ADD PRIMARY KEY (`ID_PROFESOR`, `ID_MATERIA`);
+  ADD PRIMARY KEY (`IDMATERIA`);
+  ADD PRIMARY KEY (`IDPROFESOR`);
 COMMIT;
-
