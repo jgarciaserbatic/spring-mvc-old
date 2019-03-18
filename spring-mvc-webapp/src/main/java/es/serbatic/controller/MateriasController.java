@@ -33,8 +33,8 @@ public class MateriasController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView listarMaterias(Model model) {
 		ModelAndView view;
-		List<MateriasDto> materias = materiasService.findAll();
-		model.addAttribute("materiasList", materias);
+        List<MateriasDto> profesores = materiasService.findAll();
+        model.addAttribute("materias", profesores);
 		view = new ModelAndView(LIST_VIEW, model.asMap());
 		return view;
 	}

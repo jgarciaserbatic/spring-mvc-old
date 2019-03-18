@@ -1,12 +1,15 @@
 package es.serbatic.bom;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,10 @@ public class Materias implements Serializable {
 	private Long id;
 	@Column(name = "nombre")
 	private String nombre;
+	
+    @ManyToMany(mappedBy = "materias")
+    private List<Profesores> profesores = new ArrayList<>();
+
 
 	/**
 	 * @return the id
@@ -46,6 +53,14 @@ public class Materias implements Serializable {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public List<Profesores> getProfesores() {
+		return profesores;
+	}
+
+	public void setProfesores(List<Profesores> profesores) {
+		this.profesores = profesores;
 	}
 
 	/*

@@ -1,6 +1,8 @@
      package es.serbatic.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ProfesoresDto {
 	private Long id;
@@ -8,6 +10,9 @@ public class ProfesoresDto {
 	private String apellido1;
 	private String apellido2;
 	private Date fechaAlta;
+    private List<MateriasDto> materias;
+    private List<String> selectedMaterias;
+
 	/**
 	 * @return the id
 	 */
@@ -68,6 +73,30 @@ public class ProfesoresDto {
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
-}
-         
+
+	public void addMaterias(MateriasDto materia) {
+		getMaterias().add(materia);
+		getSelectedMaterias().add(materia.getNombre());
+	}
+
+	public List<MateriasDto> getMaterias() {
+		if (materias == null) {
+			materias = new ArrayList<>();
+		}
+		return materias;
+	}
+
+	public void setMaterias(List<MateriasDto> materias) {
+
+		this.materias = materias;
+	}
+
+	public List<String> getSelectedMaterias() {
+		if (selectedMaterias == null) {
+			selectedMaterias = new ArrayList<>();
+		}
+		return selectedMaterias;
+	}
+
+}   
 

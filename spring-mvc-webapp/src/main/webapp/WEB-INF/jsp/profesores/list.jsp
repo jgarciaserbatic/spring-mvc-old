@@ -31,6 +31,12 @@
 					<td><a href="<spring:url value="/profesores/delete/${ profesor.id }" ></spring:url>">Eliminar</a>
 						<a href="<spring:url value="/profesores/update/${ profesor.id }" ></spring:url>">Actualizar</a>
 					</td>
+					<td>
+						<c:forEach items="${profesor.materias}" var="materia">
+							<c:out value="${materia.nombre}"></c:out> - 
+                        </c:forEach>
+                   </td>
+
 				</tr>
 			</c:forEach>
 		</tbody>

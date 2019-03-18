@@ -63,5 +63,14 @@ CREATE TABLE `materias` (
 ALTER TABLE `materias`
   ADD PRIMARY KEY (`ID`);
 COMMIT;
+CREATE TABLE `profesor_materia` (
+  `ID_PROFESOR` int(11) NOT NULL,
+   `ID_MATERIA` int(11) NOT NULL
+);
+-- Índices para tablas volcadas
+-- Indices de la tabla `alumnos`
+ALTER TABLE `profesor_materia`
+  ADD PRIMARY KEY (`ID_PROFESOR`, `ID_MATERIA`);
+COMMIT;
 
 

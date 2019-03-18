@@ -83,7 +83,8 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> extends
 			criteria.addOrder(order);
 		}
 		
-		return getHibernateTemplate().findByCriteria(criteria);
+        return (List<T>) getHibernateTemplate().findByCriteria(criteria);
+
 	}
 
 	public T findById(ID id) {

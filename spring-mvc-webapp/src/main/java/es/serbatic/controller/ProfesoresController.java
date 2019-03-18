@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import es.serbatic.dto.AlumnosDto;
 import es.serbatic.dto.ProfesoresDto;
+import es.serbatic.services.MateriasService;
 import es.serbatic.services.ProfesoresService;
 import es.serbatic.validation.impl.ValidatorProfesores;
 
@@ -41,6 +42,10 @@ public class ProfesoresController {
 
 	@Autowired
 	ProfesoresService profesoresService;
+	
+    @Autowired
+    MateriasService materiasService;
+
 
 	@ModelAttribute("profesor")
 	public ProfesoresDto populateForm() {
@@ -58,7 +63,9 @@ public class ProfesoresController {
 		ModelAndView view;
 		if (!model.containsAttribute("profesor")) {
 			model.addAttribute("profesor", new ProfesoresDto());
+	        
 		}
+		model.addAttribute("materias", materiasService.findAll());
 		view = new ModelAndView(PROFESORES_VIEW, model.asMap());
 		return view;
 	}
@@ -66,7 +73,10 @@ public class ProfesoresController {
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public ModelAndView showUpdateProfesor(@PathVariable Long id, Model model) {
 		ModelAndView view;
-		model.addAttribute("profesor", profesoresService.findById(id));
+	    
+        model.addAttribute("profesor", profesoresService.findById(id));
+        model.addAttribute("materias", materiasService.findAll());
+
 		view = new ModelAndView(PROFESORES_VIEW, model.asMap());
 		return view;
 	}

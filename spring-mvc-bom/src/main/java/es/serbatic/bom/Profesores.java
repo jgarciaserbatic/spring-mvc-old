@@ -2,16 +2,10 @@ package es.serbatic.bom;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "PROFESORES")
@@ -27,9 +21,17 @@ public class Profesores implements Serializable {
 	@Column(name = "APELLIDO_2")
 	private String apellido2;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="FECHA_ALTA")
 	private Date fechaAlta;
+	
+    @ManyToMany(cascade= {CascadeType.ALL})
+    @JoinTable(
+            name="profesor_materia",
+            joinColumns = { @JoinColumn(name = "id_materia")},
+            inverseJoinColumns = { @JoinColumn(name = "id_profesor")
+            })
+    private List<Materias> materias;
+
 	/**
 	 * @return the id
 	 */
@@ -89,6 +91,12 @@ public class Profesores implements Serializable {
 	 */
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
+	}
+	public List<Materias> getMaterias() {
+		return materias;
+	}
+	public void setMaterias(List<Materias> materias) {
+		this.materias = materias;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
