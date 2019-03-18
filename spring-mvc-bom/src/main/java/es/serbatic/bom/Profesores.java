@@ -44,7 +44,7 @@ public class Profesores implements Serializable {
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(
-			   name="profesores-asignaturas",
+			   name="profesores_asignaturas",
 			   joinColumns = {
 					   @JoinColumn(name = "id_asignatura")},
 			   inverseJoinColumns = {

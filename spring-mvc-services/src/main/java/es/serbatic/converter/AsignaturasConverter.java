@@ -23,7 +23,7 @@ public class AsignaturasConverter implements Converter<Asignaturas, AsignaturasD
 		AsignaturasDto result = new AsignaturasDto();
 		result.setId(source.getId());
 		result.setNombre(source.getNombre());
-		result.setDescripcion(source.getDescripcion());		
+		result.setDescripcion(source.getDescripcion());			
 		return result;
 	}
 

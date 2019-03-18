@@ -86,6 +86,12 @@ public class ProfesoresServiceImpl implements ProfesoresService {
 	@Override
 	public ProfesoresDto insert(ProfesoresDto profDto) {
 		Profesores profesor = modelMaper.map(profDto, Profesores.class);
+		List<Asignaturas> asignaturasList = new ArrayList<>();
+		for(String asignatura: profDto.getAsignaturasElegidas()) {
+			Long id = Long.valueOf(asignatura);
+			asignaturasList.add(asignaturasDao.findById(id));
+		}
+		profesor.setAsignaturas(asignaturasList);
 		profesoresDao.insert(profesor);
 		return profDto;
 	}

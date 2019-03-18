@@ -57,11 +57,11 @@ ALTER TABLE `asignaturas`
   ADD PRIMARY KEY (`ID`);
 COMMIT;
 
-CREATE TABLE IF NOT EXISTS  `profesores-asignaturas` (
+CREATE TABLE IF NOT EXISTS  `profesores_asignaturas` (
   `ID_PROFESOR` int(11) NOT NULL,
   `ID_ASIGNATURA` int(11) NOT NULL,
 
-  ALTER TABLE `profesores-asignaturas`
+  ALTER TABLE `profesores_asignaturas`
   ADD PRIMARY KEY (`ID_PROFESOR`, `ID_ASIGNATURA`);
 COMMIT;
   
