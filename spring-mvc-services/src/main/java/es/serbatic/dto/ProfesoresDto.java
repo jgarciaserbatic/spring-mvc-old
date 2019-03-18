@@ -97,6 +97,9 @@ public class ProfesoresDto {
 		}
 		return selectedMaterias;
 	}
+	public void setSelectedMaterias(List<String> selectedMaterias) {
+		this.selectedMaterias = selectedMaterias;
+	}
 
 }   
 
