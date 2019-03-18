@@ -32,12 +32,12 @@ public class Asignaturas implements Serializable {
 //	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacío")
 	private String nombre;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_PROFESOR")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_PROFESOR", referencedColumnName="ID")
 //	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacío")
-	private Long idProfesor;
+	private Profesores profesor;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.asignatura", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.asignatura", cascade = CascadeType.ALL)
 	private Set<AlumnosAsignaturas> alumnosAsignaturas = new HashSet<AlumnosAsignaturas>();
 
 	public Long getId() {
@@ -56,12 +56,12 @@ public class Asignaturas implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Long getIdProfesor() {
-		return idProfesor;
+	public Profesores getProfesor() {
+		return profesor;
 	}
 
-	public void setIdProfesor(Long idProfesor) {
-		this.idProfesor = idProfesor;
+	public void setProfesor(Profesores profesor) {
+		this.profesor = profesor;
 	}
 
 	public Set<AlumnosAsignaturas> getAlumnosAsignaturas() {
@@ -73,11 +73,55 @@ public class Asignaturas implements Serializable {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((alumnosAsignaturas == null) ? 0 : alumnosAsignaturas.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((profesor == null) ? 0 : profesor.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Asignaturas other = (Asignaturas) obj;
+		if (alumnosAsignaturas == null) {
+			if (other.alumnosAsignaturas != null)
+				return false;
+		} else if (!alumnosAsignaturas.equals(other.alumnosAsignaturas))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (profesor == null) {
+			if (other.profesor != null)
+				return false;
+		} else if (!profesor.equals(other.profesor))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return "Asignaturas [id=" + id + ", nombre=" + nombre + ", idProfesor=" + idProfesor + ", alumnosAsignaturas="
+		return "Asignaturas [id=" + id + ", nombre=" + nombre + ", profesor=" + profesor + ", alumnosAsignaturas="
 				+ alumnosAsignaturas + "]";
 	}
 
+	
 	
 
 }
