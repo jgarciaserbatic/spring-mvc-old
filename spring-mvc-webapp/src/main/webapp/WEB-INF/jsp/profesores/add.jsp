@@ -31,9 +31,8 @@
 	<form:input type="text" path="telefono" />
 	<br>
 	
-	<label>Materia</label>
-	<form:input type="number" path="materia" />
-	<br>
+	<label>Materia: por implementar</label>
+
 	
 	<form:button type="submit">Add</form:button>
 

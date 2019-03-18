@@ -31,8 +31,8 @@
 	<form:input type="text" path="telefono" value="${profesor.telefono}" />
 	<br>
 	
-	<label>Materia</label>
-	<form:input type="number" path="materia" value="${profesor.materia}" />
+	<label>Materia: Por implementar</label>
+
 	<br>
 	
 	<form:button type="submit">Update</form:button>
