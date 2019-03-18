@@ -21,7 +21,7 @@ import es.serbatic.services.AlumnosService;
 /**
  * Maneja las peticiones relacionadas con alumno
  * 
- * @author jgarcia
+ * @author jgarcia //para hacer commit
  *
  */
 @RequestMapping("alumnos")
