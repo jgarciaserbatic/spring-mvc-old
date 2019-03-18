@@ -3,6 +3,12 @@ package es.serbatic.bom;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 @Table(name = "ALUMNOS")
@@ -21,6 +27,12 @@ public class Alumnos implements Serializable {
 	private String apellido1;
 	@Column(name = "APELLIDO_2")
 	private String apellido2;
+	
+//	@NotNull
+//	@Size(min = 1, max = 100)
+//	@Pattern(regexp="^([a-zA-Z0-9\\-\\.\\_]+)'+'(\\@)([a-zA-Z0-9\\-\\.]+)'+'(\\.)([a-zA-Z]{2,4})$")
+	private String mail;
+	
 	/**
 	 * @return the id
 	 */
@@ -68,6 +80,13 @@ public class Alumnos implements Serializable {
 	 */
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
+	}
+	
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

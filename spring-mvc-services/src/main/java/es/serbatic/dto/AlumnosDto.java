@@ -1,5 +1,13 @@
 package es.serbatic.dto;
 
+
+
+
+
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * Objeto de transferenca alumno
  * 
@@ -12,6 +20,16 @@ public class AlumnosDto {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	@NotBlank(message="El campo no Puede ser nulo")
+	@Email(message="El E-Mail no esta bien formado")
+	private String mail;
+	
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 	/**
 	 * @return the id
 	 */

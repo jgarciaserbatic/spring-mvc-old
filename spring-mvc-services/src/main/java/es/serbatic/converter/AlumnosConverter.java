@@ -25,6 +25,7 @@ public class AlumnosConverter implements Converter<Alumnos, AlumnosDto> {
 		result.setNombre(source.getNombre());
 		result.setApellido1(source.getApellido1());
 		result.setApellido2(source.getApellido2());
+		result.setMail(source.getMail());
 		return result;
 	}
 

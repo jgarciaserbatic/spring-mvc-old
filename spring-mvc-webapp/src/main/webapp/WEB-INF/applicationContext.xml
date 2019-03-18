@@ -24,31 +24,47 @@
 	<context:annotation-config />
 	<context:component-scan
 		base-package="es.serbatic" />
+<!--************************************* MESAGES JACINTO ************************************* -->
+<!-- 		<bean -->
+<!-- 		class="org.springframework.context.support.ResourceBundleMessageSource" -->
+<!-- 		id="messageSource"> -->
+<!-- 		<property name="basename" value="messages" /> -->
+<!-- 	</bean> -->
 
-	<!-- MESSAGES -->
-	<bean
-		class="org.springframework.context.support.ResourceBundleMessageSource"
-		id="messageSource">
-		<property name="basename" value="messages" />
-	</bean>
+<!-- 	<bean id="localeChangeInterceptor" -->
+<!-- 		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"> -->
+<!-- 		<property name="paramName" value="siteLanguage" /> -->
+<!-- 	</bean> -->
 
-	<bean id="localeChangeInterceptor"
-		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		<property name="paramName" value="siteLanguage" />
-	</bean>
+<!-- 	<bean id="localeResolver" -->
+<!-- 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" /> -->
 
-	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
-
-	<bean id="urlMapping"
-		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-		<property name="interceptors">
-			<list>
-				<ref bean="localeChangeInterceptor" />
-			</list>
-		</property>
+<!-- 	<bean id="urlMapping" -->
+<!-- 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> -->
+<!-- 		<property name="interceptors"> -->
+<!-- 			<list> -->
+<!-- 				<ref bean="localeChangeInterceptor" /> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
 		
-	</bean>
+<!-- 	</bean> -->
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+    
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>   
+
+    <mvc:interceptors>  
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+              <property name="paramName" value="lang"/>
+        </bean>
+    </mvc:interceptors>
+    
+
 
 	<!-- Mapea las peticiones de flujo desde el DispatcherServlet al Controlador 
 		y seguimos el flujo de declaracion de la arquitectura -->
@@ -67,3 +83,5 @@
       class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
 </beans>
+
+
