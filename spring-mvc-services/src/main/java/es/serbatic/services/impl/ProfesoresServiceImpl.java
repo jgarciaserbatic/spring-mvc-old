@@ -8,7 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.serbatic.bom.Materias;
 import es.serbatic.bom.Profesores;
+import es.serbatic.dao.MateriasDao;
 import es.serbatic.dao.ProfesoresDao;
 import es.serbatic.dto.AlumnosDto;
 import es.serbatic.dto.ProfesoresDto;
@@ -18,6 +20,9 @@ import es.serbatic.services.ProfesoresService;
 public class ProfesoresServiceImpl implements ProfesoresService {
 	@Autowired
 	ProfesoresDao profesoresDao;
+	
+	@Autowired
+	MateriasDao materiasDao;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -51,9 +56,16 @@ public class ProfesoresServiceImpl implements ProfesoresService {
 	@Override
 	public void update(ProfesoresDto dto) {
 		Profesores entity = modelMapper.map(dto, Profesores.class);
+		List<Materias> materias = new ArrayList<>();
+		for(String idMateria: dto.getSelectedMaterias()) {
+			Long id = Long.valueOf(idMateria);
+			materias.add(materiasDao.findById(id));
+			
+		}
+		entity.setMaterias(materias);
 		profesoresDao.update(entity);
-		
 	}
+
 
 	@Override
 	public void saveOrUpdate(ProfesoresDto entity) {
