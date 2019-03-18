@@ -17,7 +17,7 @@
 			<th><spring:message code="materias.options"></spring:message></th>
 		</thead>
 		<tbody>
-			<c:forEach items="${ materiasList }" var="materia">
+			<c:forEach items="${ materias }" var="materia">
 				<tr>
 					<td>${ materia.id }</td>
 					<td>${ materia.nombre }</td>
