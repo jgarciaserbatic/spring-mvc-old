@@ -1,36 +1,41 @@
 package es.serbatic.bom;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
+import java.util.List;
+
 @Entity
-@Table(name = "ALUMNOS")
-public class Alumnos implements Serializable {
+@Table(name = "PROFESORES")
+public class Profesores implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -9054047698877645200L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "NOMBRE")
+//	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacío")
 	private String nombre;
 	
 	@Column(name = "APELLIDO_1")
+//	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacío")
 	private String apellido1;
 	
-	@Column(name = "APELLIDO_2")
-	private String apellido2;
-
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.alumno", cascade = CascadeType.ALL)
-	private Set<AlumnosAsignaturas> alumnosAsignaturas = new HashSet<AlumnosAsignaturas>();
+	@Column(name = "APELLIDO_2")
+//	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacío")
+	private String apellido2;
+	
+	@OneToMany(mappedBy = "idProfesor")
+	  private List<Asignaturas> asignaturas;
 
 	public Long getId() {
 		return id;
@@ -64,23 +69,25 @@ public class Alumnos implements Serializable {
 		this.apellido2 = apellido2;
 	}
 
-	public Set<AlumnosAsignaturas> getAlumnosAsignaturas() {
-		return alumnosAsignaturas;
+	public List<Asignaturas> getAsignaturas() {
+		return asignaturas;
 	}
 
-	public void setAlumnosAsignaturas(Set<AlumnosAsignaturas> alumnosAsignaturas) {
-		this.alumnosAsignaturas = alumnosAsignaturas;
+	public void setAsignaturas(List<Asignaturas> asignaturas) {
+		this.asignaturas = asignaturas;
 	}
 
-
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((alumnosAsignaturas == null) ? 0 : alumnosAsignaturas.hashCode());
 		result = prime * result + ((apellido1 == null) ? 0 : apellido1.hashCode());
 		result = prime * result + ((apellido2 == null) ? 0 : apellido2.hashCode());
+		result = prime * result + ((asignaturas == null) ? 0 : asignaturas.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
@@ -94,12 +101,7 @@ public class Alumnos implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Alumnos other = (Alumnos) obj;
-		if (alumnosAsignaturas == null) {
-			if (other.alumnosAsignaturas != null)
-				return false;
-		} else if (!alumnosAsignaturas.equals(other.alumnosAsignaturas))
-			return false;
+		Profesores other = (Profesores) obj;
 		if (apellido1 == null) {
 			if (other.apellido1 != null)
 				return false;
@@ -109,6 +111,11 @@ public class Alumnos implements Serializable {
 			if (other.apellido2 != null)
 				return false;
 		} else if (!apellido2.equals(other.apellido2))
+			return false;
+		if (asignaturas == null) {
+			if (other.asignaturas != null)
+				return false;
+		} else if (!asignaturas.equals(other.asignaturas))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -125,10 +132,9 @@ public class Alumnos implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Alumnos [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
-				+ ", alumnosAsignaturas=" + alumnosAsignaturas + "]";
+		return "Profesores [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
+				+ ", asignaturas=" + asignaturas + "]";
 	}
-
-
-
+	
+	
 }
