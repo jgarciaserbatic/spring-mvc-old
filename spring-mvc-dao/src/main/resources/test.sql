@@ -51,7 +51,7 @@ COMMIT;
 CREATE TABLE `asignaturas` (
   `ID` int(11) NOT NULL,
   `NOMBRE` varchar(250) NOT NULL,
-  `ID_PROFESOR` varchar(250) NOT NULL,
+  `ID_PROFESOR` int(11) NOT NULL,
 );
 
 --

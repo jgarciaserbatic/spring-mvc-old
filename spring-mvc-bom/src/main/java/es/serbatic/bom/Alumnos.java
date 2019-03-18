@@ -29,7 +29,7 @@ public class Alumnos implements Serializable {
 	private String apellido2;
 
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.alumno", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.alumno", cascade = CascadeType.ALL)
 	private Set<AlumnosAsignaturas> alumnosAsignaturas = new HashSet<AlumnosAsignaturas>();
 
 	public Long getId() {

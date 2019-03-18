@@ -14,19 +14,12 @@ import es.serbatic.bom.AlumnosAsignaturas;
 public class AsignaturasDto {
 
 	private Long id;
-	private Long idProfesor;
+	private ProfesoresDto profesor;
 	private String nombre;
 	private Set<AlumnosAsignaturasDto> alumnosAsignaturas = new HashSet<AlumnosAsignaturasDto>();
 	
 	public AsignaturasDto() {
 		super();
-	}
-
-	public AsignaturasDto(Long id, Long idProfesor, String nombre) {
-		super();
-		this.id = id;
-		this.idProfesor = idProfesor;
-		this.nombre = nombre;
 	}
 
 	public Long getId() {
@@ -37,12 +30,12 @@ public class AsignaturasDto {
 		this.id = id;
 	}
 
-	public Long getIdProfesor() {
-		return idProfesor;
+	public ProfesoresDto getProfesor() {
+		return profesor;
 	}
 
-	public void setIdProfesor(Long idProfesor) {
-		this.idProfesor = idProfesor;
+	public void setProfesor(ProfesoresDto profesor) {
+		this.profesor = profesor;
 	}
 
 	public String getNombre() {
@@ -61,5 +54,10 @@ public class AsignaturasDto {
 		this.alumnosAsignaturas = alumnosAsignaturas;
 	}
 
+	@Override
+	public String toString() {
+		return "AsignaturasDto [id=" + id + ", profesor=" + profesor + ", nombre=" + nombre + ", alumnosAsignaturas="
+				+ alumnosAsignaturas + "]";
+	}
 
 }

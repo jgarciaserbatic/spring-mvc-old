@@ -31,11 +31,20 @@ public class ProfesoresConverter implements Converter<Profesores, ProfesoresDto>
 		result.setApellido1(source.getApellido1());
 		result.setApellido2(source.getApellido2());
 		
-		
+		AsignaturasDto asignaturaDto;
 		List<Asignaturas> asignaturas = new ArrayList<Asignaturas>(source.getAsignaturas());
 		List<AsignaturasDto> asignaturasDto = new ArrayList<AsignaturasDto>();
 		for (Asignaturas asignatura : asignaturas) {
-			asignaturasDto.add(new AsignaturasDto(asignatura.getId(), asignatura.getIdProfesor(), asignatura.getNombre()));
+			asignaturaDto = new AsignaturasDto();
+			asignaturaDto.setId(source.getId());
+			asignaturaDto.setNombre(source.getNombre());
+			ProfesoresDto profesorDto = new ProfesoresDto();
+			profesorDto.setId(asignatura.getProfesor().getId());
+			profesorDto.setNombre(asignatura.getProfesor().getNombre());
+			profesorDto.setApellido1(asignatura.getProfesor().getApellido1());
+			profesorDto.setApellido2(asignatura.getProfesor().getApellido2());
+			asignaturaDto.setProfesor(profesorDto);
+			asignaturasDto.add(asignaturaDto);
 		}
 		result.setAsignaturas(asignaturasDto);
 		return result;

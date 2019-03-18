@@ -3,18 +3,12 @@
  */
 package es.serbatic.converter;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 
-import es.serbatic.bom.AlumnosAsignaturas;
-import es.serbatic.dto.AlumnosAsignaturasDto;
-import es.serbatic.dto.AsignaturasDto;
 import es.serbatic.bom.Asignaturas;
+import es.serbatic.dto.AsignaturasDto;
+import es.serbatic.dto.ProfesoresDto;
 
 /**
  * Convierte de Entidad alumnos a Dto
@@ -31,7 +25,12 @@ public class AsignaturasConverter implements Converter<Asignaturas, AsignaturasD
 		AsignaturasDto result = new AsignaturasDto();
 		result.setId(source.getId());
 		result.setNombre(source.getNombre());
-		result.setIdProfesor(source.getIdProfesor());
+		ProfesoresDto profesorDto = new ProfesoresDto();
+		profesorDto.setId(source.getProfesor().getId());
+		profesorDto.setNombre(source.getProfesor().getNombre());
+		profesorDto.setApellido1(source.getProfesor().getApellido1());
+		profesorDto.setApellido2(source.getProfesor().getApellido2());
+		result.setProfesor(profesorDto);
 		result.setAlumnosAsignaturas(ConverterUtil.AlumnosAsignaturasConverter(source.getAlumnosAsignaturas()));
 		return result;
 	}

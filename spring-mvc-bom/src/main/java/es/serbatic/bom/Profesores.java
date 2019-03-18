@@ -34,7 +34,7 @@ public class Profesores implements Serializable {
 //	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacío")
 	private String apellido2;
 	
-	@OneToMany(mappedBy = "idProfesor")
+	@OneToMany(mappedBy = "profesor")
 	  private List<Asignaturas> asignaturas;
 
 	public Long getId() {

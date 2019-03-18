@@ -12,6 +12,9 @@
 		<property name="converters">
 			<list>
 				<bean id="alumnosConverter" class="es.serbatic.converter.AlumnosConverter"></bean>
+				<bean id="profesoresConverter" class="es.serbatic.converter.ProfesoresConverter"></bean>
+				<bean id="asignaturasConverter" class="es.serbatic.converter.AsignaturasConverter"></bean>
+				<bean id="alumnosAsignaturasConverter" class="es.serbatic.converter.AlumnoAsignaturasConverter"></bean>
 			</list>
 		</property>
 	</bean>

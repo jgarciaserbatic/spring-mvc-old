@@ -7,9 +7,11 @@ import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 
 import es.serbatic.bom.AlumnosAsignaturas;
+import es.serbatic.bom.Profesores;
 import es.serbatic.dto.AlumnosAsignaturasDto;
 import es.serbatic.dto.AlumnosDto;
 import es.serbatic.dto.AsignaturasDto;
+import es.serbatic.dto.ProfesoresDto;
 
 /**
  * Convierte de Entidad alumnos a Dto
@@ -33,6 +35,13 @@ public class AlumnosAsignaturasConverter implements Converter<AlumnosAsignaturas
 		AsignaturasDto asignatura = new AsignaturasDto();
 		asignatura.setId(source.getPk().getAsignatura().getId());
 		asignatura.setNombre(source.getPk().getAsignatura().getNombre());
+		ProfesoresDto profesorDto = new ProfesoresDto();
+		Profesores profesor = source.getPk().getAsignatura().getProfesor();
+		profesorDto.setId(profesor.getId());
+		profesorDto.setNombre(profesor.getNombre());
+		profesorDto.setApellido1(profesor.getApellido1());
+		profesorDto.setApellido2(profesor.getApellido2());
+    	asignatura.setProfesor(profesorDto);
 
 		result.setAlumno(alumno);
 		result.setAsignatura(asignatura);

@@ -2,6 +2,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
+
+<h1><spring:message code="alumno.h1.listado"></spring:message>:</h1>
+<br>
+<a href="${pageContext.request.contextPath}">Volver</a>
+
+
 <table>
 	<thead>
 		<th>Id</th>
