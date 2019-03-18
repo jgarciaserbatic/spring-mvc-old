@@ -20,7 +20,7 @@ public class AlumnosAsignaturas implements Serializable {
 	private AlumnosAsignaturasId pk = new AlumnosAsignaturasId();
 
 	@Column(name = "NOTA")
-	private int nota;
+	private Long nota;
 
 	public AlumnosAsignaturas() {
 	}
@@ -33,23 +33,24 @@ public class AlumnosAsignaturas implements Serializable {
 		this.pk = pk;
 	}
 
-	public int getNota() {
+	public Long getNota() {
 		return nota;
 	}
 
-	public void setNota(int nota) {
+	public void setNota(Long nota) {
 		this.nota = nota;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	@Override
+	public String toString() {
+		return "AlumnosAsignaturas [pk=" + pk + ", nota=" + nota + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + nota;
+		result = prime * result + ((nota == null) ? 0 : nota.hashCode());
 		result = prime * result + ((pk == null) ? 0 : pk.hashCode());
 		return result;
 	}
@@ -63,7 +64,10 @@ public class AlumnosAsignaturas implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		AlumnosAsignaturas other = (AlumnosAsignaturas) obj;
-		if (nota != other.nota)
+		if (nota == null) {
+			if (other.nota != null)
+				return false;
+		} else if (!nota.equals(other.nota))
 			return false;
 		if (pk == null) {
 			if (other.pk != null)
@@ -73,9 +77,6 @@ public class AlumnosAsignaturas implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "AlumnosAsignaturas [pk=" + pk + ", nota=" + nota + "]";
-	}
+	
 
 }

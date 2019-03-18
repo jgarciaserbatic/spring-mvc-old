@@ -16,7 +16,7 @@ public class AsignaturasDto {
 	private Long id;
 	private Long idProfesor;
 	private String nombre;
-	private Set<AlumnosAsignaturas> alumnosAsignaturas = new HashSet<AlumnosAsignaturas>();
+	private Set<AlumnosAsignaturasDto> alumnosAsignaturas = new HashSet<AlumnosAsignaturasDto>();
 	
 	public AsignaturasDto() {
 		super();
@@ -28,9 +28,6 @@ public class AsignaturasDto {
 		this.idProfesor = idProfesor;
 		this.nombre = nombre;
 	}
-
-
-
 
 	public Long getId() {
 		return id;
@@ -56,18 +53,12 @@ public class AsignaturasDto {
 		this.nombre = nombre;
 	}
 
-	public Set<AlumnosAsignaturas> getAlumnosAsignaturas() {
+	public Set<AlumnosAsignaturasDto> getAlumnosAsignaturas() {
 		return alumnosAsignaturas;
 	}
 
-	public void setAlumnosAsignaturas(Set<AlumnosAsignaturas> alumnosAsignaturas) {
+	public void setAlumnosAsignaturas(Set<AlumnosAsignaturasDto> alumnosAsignaturas) {
 		this.alumnosAsignaturas = alumnosAsignaturas;
-	}
-
-	@Override
-	public String toString() {
-		return "AsignaturasDto [id=" + id + ", idProfesor=" + idProfesor + ", nombre=" + nombre
-				+ ", alumnosAsignaturas=" + alumnosAsignaturas + "]";
 	}
 
 

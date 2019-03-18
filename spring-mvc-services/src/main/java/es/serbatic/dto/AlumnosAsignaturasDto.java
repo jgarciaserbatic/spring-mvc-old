@@ -10,33 +10,37 @@ import es.serbatic.bom.AlumnosAsignaturasId;
  */
 public class AlumnosAsignaturasDto {
 
-	private AlumnosDto alumno = new AlumnosDto() ;
+	private AlumnosDto alumno = new AlumnosDto();
 	private AsignaturasDto asignatura = new AsignaturasDto();
-	private int Nota;
-	
+	private Long nota;
+
 	public AlumnosDto getAlumno() {
 		return alumno;
 	}
+
 	public void setAlumno(AlumnosDto alumno) {
 		this.alumno = alumno;
 	}
+
 	public AsignaturasDto getAsignatura() {
 		return asignatura;
 	}
+
 	public void setAsignatura(AsignaturasDto asignatura) {
 		this.asignatura = asignatura;
 	}
-	public int getNota() {
-		return Nota;
-	}
-	public void setNota(int nota) {
-		Nota = nota;
-	}
-	@Override
-	public String toString() {
-		return "AlumnosAsignaturasDto [alumno=" + alumno + ", asignatura=" + asignatura + ", Nota=" + Nota + "]";
+
+	public Long getNota() {
+		return nota;
 	}
 
-	
+	public void setNota(Long nota) {
+		this.nota = nota;
+	}
+
+	@Override
+	public String toString() {
+		return "AlumnosAsignaturasDto [alumno=" + alumno + ", asignatura=" + asignatura + ", nota=" + nota + "]";
+	}
 
 }
