@@ -29,15 +29,15 @@ public class Asignaturas implements Serializable {
 	private Long id;
 
 	@Column(name = "NOMBRE")
-//	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacío")
+//	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacï¿½o")
 	private String nombre;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_PROFESOR", referencedColumnName="ID")
-//	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacío")
+//	@Range(min=1, max=20 ,message = "El campo Nombre no puede estar vacï¿½o")
 	private Profesores profesor;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.asignatura", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.asignatura", cascade = CascadeType.ALL)
 	private Set<AlumnosAsignaturas> alumnosAsignaturas = new HashSet<AlumnosAsignaturas>();
 
 	public Long getId() {

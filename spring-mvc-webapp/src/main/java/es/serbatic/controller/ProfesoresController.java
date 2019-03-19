@@ -70,21 +70,21 @@ public class ProfesoresController {
 	@RequestMapping(value = "new", method = RequestMethod.POST)
 	public ModelAndView insertarProfesor(@ModelAttribute ProfesoresDto profesor, BindingResult result, Model model) {
 				
-//		if(result.hasErrors()) {
-//			List<String> errors = new ArrayList<String>();
-//            for (ObjectError err : result.getAllErrors())
-//                errors.add(err.getDefaultMessage());
-//
-//            model.addAttribute("errors", errors);
-//			model.addAttribute("profesor", profesor);
-//			return new ModelAndView(PROFESOR_VIEW, model.asMap());
-//		}
-//		
-//		else if(profesor.getId() != null) {
-//			profesoresService.update(profesor);
-//		} else {
-//				profesoresService.insert(profesor);
-//		}
+		if(result.hasErrors()) {
+			List<String> errors = new ArrayList<String>();
+            for (ObjectError err : result.getAllErrors())
+                errors.add(err.getDefaultMessage());
+
+            model.addAttribute("errors", errors);
+			model.addAttribute("profesor", profesor);
+			return new ModelAndView(PROFESOR_VIEW, model.asMap());
+		}
+		
+		else if(profesor.getId() != null) {
+			profesoresService.update(profesor);
+		} else {
+				profesoresService.insert(profesor);
+		}
 		return new ModelAndView("redirect:/profesores");
 	}
 
